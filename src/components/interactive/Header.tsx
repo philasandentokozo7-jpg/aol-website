@@ -5,7 +5,7 @@ import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { openConsultation } from "./consultation-events";
 
-const LOGO = "/assets/logo/aol-logo-full.png";
+const LOGO = "/assets/logo/aol-logo-full.webp";
 
 export const NAV: Array<[string, string]> = [
   ["Home", "#home"],
@@ -56,7 +56,7 @@ export function Header() {
         <div className="container hdr__inner">
           <a className="hdr__logo" href="#home" aria-label="AOL Accounting Academy SA — home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={LOGO} alt="AOL Accounting Academy SA" width={176} height={42} />
+            <img src={LOGO} alt="AOL Accounting Academy SA" width={60} height={42} fetchPriority="high" />
           </a>
           <nav className="hdr__nav" aria-label="Primary">
             {NAV.map(([label, href]) => (
@@ -76,12 +76,12 @@ export function Header() {
         </div>
       </header>
 
-      <div className={`drawer ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+      <div className={`drawer ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen} inert={!menuOpen || undefined}>
         <div className="drawer__scrim" onClick={() => setMenuOpen(false)}></div>
         <div className="drawer__panel" role="dialog" aria-label="Menu">
           <div className="drawer__top">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={LOGO} alt="AOL Accounting Academy SA" width={159} height={38} />
+            <img src={LOGO} alt="AOL Accounting Academy SA" width={54} height={38} />
             <button className="modal__close" style={{ position: "static" }} aria-label="Close menu" onClick={() => setMenuOpen(false)}>
               <Icon name="x" size={20} />
             </button>

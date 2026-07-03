@@ -1,5 +1,6 @@
 import { Header } from "@/components/interactive/Header";
 import { ConsultationModal, FORM_NAME } from "@/components/interactive/ConsultationModal";
+import { REVEAL_SCRIPT } from "@/components/interactive/Reveal";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { WhyChoose } from "@/components/sections/WhyChoose";
@@ -48,6 +49,9 @@ export default function Home() {
         </select>
         <textarea name="message"></textarea>
       </form>
+
+      {/* Reveal-on-scroll without hydration: runs as soon as the DOM exists. */}
+      <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
     </div>
   );
 }

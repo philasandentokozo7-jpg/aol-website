@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export interface RevealProps {
   children: ReactNode;
@@ -8,37 +6,38 @@ export interface RevealProps {
   className?: string;
   delay?: string;
   style?: CSSProperties;
+  /** Render already-revealed (CSS animation runs at style load, no JS needed).
+      Use for above-the-fold content so LCP isn't gated on hydration. */
+  immediate?: boolean;
 }
 
-/** Reveal — fades/rises its children in when scrolled into view (honours reduced motion). */
-export function Reveal({ children, as: Tag = "div", className = "", delay, style }: RevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.classList.add("in");
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            el.classList.add("in");
-            io.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
+/**
+ * Reveal — fades/rises its children in when scrolled into view.
+ * Server component: the scroll-in behaviour is driven by the tiny inline
+ * IntersectionObserver script in page.tsx (see REVEAL_SCRIPT), so these
+ * wrappers don't hydrate. Honours prefers-reduced-motion.
+ */
+export function Reveal({ children, as: Tag = "div", className = "", delay, style, immediate = false }: RevealProps) {
   return (
-    <Tag ref={ref as never} className={`reveal ${className}`.trim()} data-delay={delay} style={style}>
+    <Tag className={`reveal ${immediate ? "in " : ""}${className}`.trim()} data-delay={delay} style={style}>
       {children}
     </Tag>
   );
 }
+
+/** Inline, hydration-free reveal-on-scroll (mirrors the prototype's Reveal/site-lib.jsx). */
+export const REVEAL_SCRIPT = `
+(function () {
+  var els = document.querySelectorAll('.reveal:not(.in)');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  els.forEach(function (el) { io.observe(el); });
+})();
+`;

@@ -29,7 +29,7 @@ export function Footer() {
           <div className="ftr__brand">
             <span className="chip">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/logo/aol-logo-full.png" alt="AOL Accounting Academy SA" width={167} height={40} />
+              <img src="/assets/logo/aol-logo-full.webp" alt="AOL Accounting Academy SA" width={57} height={40} loading="lazy" />
             </span>
             <p>
               Modern accounting and business advisory for South African SMEs, start-ups and growing companies — keeping
@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           <div className="ftr__col">
-            <h4>Quick Links</h4>
+            <h3>Quick Links</h3>
             <ul>
               {F_QUICK.map((l) => (
                 <li key={l}>
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
 
           <div className="ftr__col">
-            <h4>Services</h4>
+            <h3>Services</h3>
             <ul>
               {F_SERVICES.map((l) => (
                 <li key={l}>
@@ -63,7 +63,7 @@ export function Footer() {
           </div>
 
           <div className="ftr__col">
-            <h4>Contact</h4>
+            <h3>Contact</h3>
             <ul className="ftr__contact">
               <li>
                 <Icon name="map-pin" size={17} />

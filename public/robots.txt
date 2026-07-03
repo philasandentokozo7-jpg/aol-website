@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aol-accounting-academy.netlify.app/sitemap.xml

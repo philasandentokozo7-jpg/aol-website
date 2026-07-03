@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section id="home" className="hero">
       <div className="container hero__grid">
-        <Reveal className="hero__copy">
+        <Reveal className="hero__copy" immediate>
           <Eyebrow>Trusted &middot; Transparent &middot; Professional</Eyebrow>
           <h1 className="hero__title">
             Professional Accounting. Strategic Business Advice. <em>Sustainable Growth.</em>
@@ -39,7 +39,7 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <Reveal className="hero__visual" delay="1">
+        <Reveal className="hero__visual" delay="1" immediate>
           <div className="hero__frame">
             <HeroVideo />
             <span className="hero__ring" aria-hidden="true"></span>

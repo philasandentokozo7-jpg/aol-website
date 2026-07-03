@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   turbopack: { root: __dirname },
+  // Inline the stylesheet into the HTML: removes a render-blocking request
+  // (worth ~0.5s FCP/LCP on throttled mobile for our single-page site).
+  experimental: { inlineCss: true },
 };
 
 export default nextConfig;

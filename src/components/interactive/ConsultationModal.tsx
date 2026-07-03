@@ -80,7 +80,7 @@ export function ConsultationModal() {
   const onClose = () => setOpen(false);
 
   return (
-    <div className={`modal ${open ? "open" : ""}`} aria-hidden={!open}>
+    <div className={`modal ${open ? "open" : ""}`} aria-hidden={!open} inert={!open || undefined}>
       <div className="modal__scrim" onClick={onClose}></div>
       <div className="modal__card" role="dialog" aria-modal="true" aria-label="Book a free consultation">
         <button className="modal__close" onClick={onClose} aria-label="Close">

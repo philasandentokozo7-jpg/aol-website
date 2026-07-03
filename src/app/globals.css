@@ -377,8 +377,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* page-level behaviour from the prototype index.html */
 html { scroll-behavior: smooth; }
 [id] { scroll-margin-top: 88px; }
-.site { animation: aol-fade-in 400ms var(--ease-out) both; }
+/* (the prototype's .site load fade existed to mask its Babel boot screen —
+   dropped in production so first paint isn't delayed) */
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---- Production overrides (a11y) ---- */
+/* Footer column headings are h3 for a correct heading outline (CTA h2 → h3);
+   styled identically to the handoff's .ftr__col h4 rule. */
+.ftr__col h3 { font-family: var(--font-sans); font-weight: 700; font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase; color: #fff; margin-bottom: 1rem; }
 
 /* ================= COMPONENT PRIMITIVES (verbatim injected CSS) ================= */
 /* ---- from components/core/Button.jsx ---- */
