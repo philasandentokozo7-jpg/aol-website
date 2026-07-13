@@ -10,15 +10,14 @@ const F_SERVICES = [
   "CIPC Services",
 ];
 
-// TODO(client): replace every "(placeholder)" value below with the real details,
-// then delete the <em>(placeholder)</em> markers.
+// Real business details (AOL Accounting Academy SA).
+// Email intentionally omitted until Google Workspace is set up on the domain.
 const CONTACT = {
-  address: "Your office address, South Africa",
-  phoneDisplay: "+27 (0)00 000 0000",
-  phoneHref: "tel:+270000000000",
-  whatsappHref: "https://wa.me/270000000000", // TODO(client): real WhatsApp number, digits only
-  email: "hello@aolacademy.co.za",
-  hours: "Mon–Fri: 08:00–17:00",
+  address: "27 Bram Fischer Road, Storage Solutions, 2nd Floor, Room 2-40, Durban",
+  phoneDisplay: "+27 72 206 7130",
+  phoneHref: "tel:+27722067130",
+  whatsappHref: "https://wa.me/27722067130",
+  hours: "Mon–Fri: 08:00–16:30",
 };
 
 export function Footer() {
@@ -67,14 +66,12 @@ export function Footer() {
             <ul className="ftr__contact">
               <li>
                 <Icon name="map-pin" size={17} />
-                <span>
-                  {CONTACT.address} <em style={{ opacity: 0.7 }}>(placeholder)</em>
-                </span>
+                <span>{CONTACT.address}</span>
               </li>
               <li>
                 <Icon name="phone" size={17} />
                 <span>
-                  <a href={CONTACT.phoneHref}>{CONTACT.phoneDisplay}</a> <em style={{ opacity: 0.7 }}>(placeholder)</em>
+                  <a href={CONTACT.phoneHref}>{CONTACT.phoneDisplay}</a>
                 </span>
               </li>
               <li>
@@ -82,21 +79,12 @@ export function Footer() {
                 <span>
                   <a href={CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer">
                     WhatsApp chat
-                  </a>{" "}
-                  <em style={{ opacity: 0.7 }}>(placeholder)</em>
-                </span>
-              </li>
-              <li>
-                <Icon name="mail" size={17} />
-                <span>
-                  <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> <em style={{ opacity: 0.7 }}>(placeholder)</em>
+                  </a>
                 </span>
               </li>
               <li>
                 <Icon name="clock" size={17} />
-                <span>
-                  {CONTACT.hours} <em style={{ opacity: 0.7 }}>(placeholder)</em>
-                </span>
+                <span>{CONTACT.hours}</span>
               </li>
             </ul>
           </div>
