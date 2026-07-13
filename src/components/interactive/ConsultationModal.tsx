@@ -7,6 +7,7 @@ import { Field } from "../ui/Field";
 import { Icon } from "../ui/Icon";
 import { SectionHeading } from "../ui/SectionHeading";
 import { OPEN_CONSULTATION_EVENT } from "./consultation-events";
+import { FORMSPREE_ENDPOINT, WHATSAPP_URL } from "@/config/site";
 
 const CM_SERVICES = [
   "Select a service…",
@@ -57,21 +58,29 @@ export function ConsultationModal() {
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSending(true);
     setError(null);
+
+    // No delivery endpoint configured yet: do NOT pretend the request was sent.
+    // Be honest and route the visitor to WhatsApp instead.
+    if (!FORMSPREE_ENDPOINT) {
+      setError(
+        "Our online booking form isn’t connected yet. Please message us on WhatsApp and we’ll respond within one business day."
+      );
+      return;
+    }
+
+    setSending(true);
     const data = new FormData(e.currentTarget);
-    data.set("form-name", FORM_NAME);
     try {
-      // Netlify Forms: POST the urlencoded payload back to any path on our origin.
-      const res = await fetch("/", {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        headers: { Accept: "application/json" },
+        body: data,
       });
       if (!res.ok) throw new Error(`Form POST failed: ${res.status}`);
       setSent(true);
     } catch {
-      setError("Something went wrong sending your request. Please try again, or email us directly.");
+      setError("Something went wrong sending your request. Please try again, or message us on WhatsApp.");
     } finally {
       setSending(false);
     }
@@ -120,12 +129,16 @@ export function ConsultationModal() {
                 </p>
               </div>
               <form className="modal__form" name={FORM_NAME} onSubmit={submit}>
-                {/* Netlify honeypot — hidden from people, tempting for bots */}
-                <p style={{ display: "none" }} aria-hidden="true">
-                  <label>
-                    Don&apos;t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                  </label>
-                </p>
+                {/* Formspree honeypot — hidden from people, tempting for bots */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ display: "none" }}
+                />
+                <input type="hidden" name="_subject" value="New consultation request — AOL Accounting Academy SA" />
                 <Field label="Full name" htmlFor="cm-name" required>
                   <div className="fld">
                     <Icon name="user" size={18} />
@@ -179,6 +192,12 @@ export function ConsultationModal() {
                   <Button type="submit" block size="lg" iconRight="arrow-right" disabled={sending}>
                     {sending ? "Sending…" : "Request my consultation"}
                   </Button>
+                  <p style={{ marginTop: "0.75rem", textAlign: "center", fontSize: "var(--text-sm)", color: "var(--text-muted)" }}>
+                    Prefer to chat?{" "}
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--navy-900)", fontWeight: 600 }}>
+                      Message us on WhatsApp
+                    </a>
+                  </p>
                 </div>
               </form>
             </>

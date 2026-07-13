@@ -72,6 +72,7 @@ export const metadata: Metadata = {
   icons: { icon: "/assets/logo/aol-mark.png" },
   openGraph: {
     type: "website",
+    url: SITE_URL,
     siteName: "AOL Accounting Academy SA",
     title: "AOL Accounting Academy SA — Accounting, Tax & Advisory",
     description:
