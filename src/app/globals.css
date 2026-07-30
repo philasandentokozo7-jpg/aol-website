@@ -710,6 +710,18 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 .drawer__cta { margin-top: auto; padding-top: 1rem; }
 
 /* ---- Hero ---- */
+.skip-link {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  background: var(--navy-900); color: #fff; padding: .75rem 1rem;
+  border-radius: var(--radius-sm); font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 1rem; color: #fff; outline-offset: 3px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
 .hero { position: relative; padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: var(--section-y); }
 .hero::before { /* soft radial wash behind copy */
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -717,14 +729,21 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
     radial-gradient(60% 60% at 12% 0%, rgba(30,111,220,.08), transparent 60%),
     radial-gradient(50% 50% at 100% 20%, rgba(199,162,76,.07), transparent 55%); }
 .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
-.hero__copy { display: flex; flex-direction: column; gap: 1.5rem; max-width: 620px; }
+.hero__copy { display: flex; flex-direction: column; gap: 1.35rem; max-width: 640px; }
+.hero__brand {
+  font-family: var(--font-sans); font-weight: 800; font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  letter-spacing: .02em; color: var(--navy-900); margin: 0;
+}
 .hero__title { font-family: var(--font-display); font-weight: var(--weight-medium);
-  font-size: var(--text-5xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight);
-  color: var(--navy-900); text-wrap: balance; }
+  font-size: clamp(1.85rem, 4.2vw, 2.85rem); line-height: 1.15; letter-spacing: var(--tracking-tight);
+  color: var(--navy-900); text-wrap: balance; margin: 0; }
 .hero__title em { font-style: italic; color: var(--brand-primary); }
 .hero__lead { font-size: var(--text-lg); line-height: var(--leading-body); color: var(--text-body); max-width: 52ch; }
+.hero__leads { display: flex; flex-direction: column; gap: .9rem; max-width: 58ch; }
+.hero__leads p { margin: 0; font-size: var(--text-base); line-height: var(--leading-body); color: var(--text-body); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; }
-.hero__trust { display: grid; grid-template-columns: 1fr; gap: .7rem; margin-top: .5rem; }
+.hero__trust { list-style: none; display: grid; grid-template-columns: 1fr; gap: .7rem; margin: .5rem 0 0; padding: 0; }
+.hero__trust li { min-width: 0; }
 
 /* hero visual card */
 .hero__visual { position: relative; }
@@ -766,7 +785,44 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 .grid--2 { grid-template-columns: 1fr; }
 .grid--3 { grid-template-columns: 1fr; }
 .grid--4 { grid-template-columns: 1fr 1fr; }
-.grid--services { grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid--services { grid-template-columns: 1fr; gap: 1rem; align-items: stretch; }
+.grid--services > * { min-width: 0; height: 100%; }
+.grid--services .aol-servicecard { height: 100%; }
+.aol-servicecard--titleOnly { justify-content: flex-start; min-height: 148px; }
+.aol-servicecard--titleOnly .aol-servicecard__title { margin-bottom: 0; }
+.services__more { display: flex; justify-content: center; margin-top: 2rem; }
+.grid--services-detail { grid-template-columns: 1fr; }
+.grid--industries { list-style: none; padding: 0; margin: 0; }
+.industry-item { list-style: none; min-width: 0; }
+.process__grid > li { list-style: none; min-width: 0; }
+.insights-preview { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .85rem; }
+.insights-preview__item { list-style: none; }
+.insights-preview__row {
+  display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center;
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem; box-shadow: var(--shadow-xs);
+}
+.insights-preview__mark {
+  font-family: var(--font-sans); font-weight: 800; color: var(--brand-primary);
+  font-size: var(--text-sm); letter-spacing: .04em;
+}
+.insights-preview__title {
+  font-family: var(--font-sans); font-weight: 700; color: var(--navy-900);
+  font-size: var(--text-lg); line-height: 1.35;
+}
+.page-hero { padding-bottom: 1.5rem; }
+.page-hero__brand { margin-top: 1rem; font-weight: 700; color: var(--text-muted); }
+.legal__inner { max-width: 760px; }
+.legal h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: .75rem; color: var(--navy-900); }
+.legal h2 { font-family: var(--font-sans); font-size: var(--text-xl); margin: 1.75rem 0 .7rem; color: var(--navy-900); }
+.legal p, .legal li { color: var(--text-body); line-height: 1.65; }
+.legal ul { padding-left: 1.2rem; display: grid; gap: .45rem; margin: .75rem 0 1rem; }
+.legal__meta { color: var(--text-muted); }
+.legal__note { margin-top: 2rem; padding: 1rem 1.1rem; background: var(--paper-2); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-sm); }
+.modal__consent { margin-top: .25rem; }
+.modal__check { display: flex; gap: .7rem; align-items: flex-start; font-size: var(--text-sm); color: var(--text-body); line-height: 1.45; }
+.modal__check input { margin-top: .2rem; width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: var(--brand-primary); }
+.modal__form-error { margin: 0; color: var(--danger); background: var(--danger-bg); border: 1px solid rgba(192,57,43,.25); border-radius: var(--radius-sm); padding: .75rem .9rem; font-size: var(--text-sm); }
 .grid--industries { grid-template-columns: 1fr 1fr; gap: .75rem; }
 
 /* ---- Pricing ---- */
@@ -780,7 +836,7 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 .pricing__note .fine { font-size: var(--text-sm); color: var(--text-muted); }
 
 /* ---- Process ---- */
-.process__grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; }
+.process__grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 2.25rem; }
 
 /* ---- CTA band ---- */
 .ctaband { position: relative; overflow: hidden; border-radius: clamp(20px, 4vw, 36px);
@@ -871,9 +927,11 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
    ============================================================ */
 @media (min-width: 680px) {
   .grid--services { grid-template-columns: 1fr 1fr; }
+  .grid--services-detail { grid-template-columns: 1fr 1fr; }
   .about__points { grid-template-columns: 1fr 1fr; }
   .pricing__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero__trust { grid-template-columns: 1fr 1fr; }
+  .insights-preview { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 900px) {
   .hdr__nav { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 1.9rem); }
@@ -883,7 +941,8 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   .about__grid { grid-template-columns: .95fr 1.05fr; }
   .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .grid--services { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid--services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--services-detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid--industries { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .process__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
   .ftr__grid { grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 2.5rem; }
@@ -891,8 +950,13 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   .modal__form { gap: 1rem 1.1rem; }
 }
 @media (min-width: 1120px) {
-  .grid--services { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .grid--services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--services-detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid--industries { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 360px) {
+  .hero__title { font-size: 1.7rem; }
+  .hero__cta .aol-btn { width: 100%; justify-content: center; }
 }
 
 /* ---- Self-contained form controls (used by the consultation modal) ----

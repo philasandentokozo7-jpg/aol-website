@@ -1,44 +1,40 @@
-import { ArticleCard } from "../ui/ArticleCard";
-import { Button } from "../ui/Button";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../interactive/Reveal";
 
-// TODO: wire these cards + "View all articles" to real articles when the client starts publishing.
-const ARTICLES: Array<[string, string, string, string, string]> = [
-  ["Cash Flow", "Understanding Cash Flow Management", "Jun 2026", "5 min", "insight-cashflow.webp"],
-  ["Tax", "Preparing for Tax Season", "May 2026", "6 min", "insight-tax.webp"],
-  ["Cloud", "Benefits of Cloud Accounting with Xero", "May 2026", "4 min", "insight-cloud.webp"],
-  ["Advisory", "Financial Tips for Growing Businesses", "Apr 2026", "5 min", "insight-growth.webp"],
-];
+/** Approved topic titles only — no fabricated articles, dates, authors, or click-throughs. */
+const TOPICS = [
+  "Understanding Cash Flow Management",
+  "Preparing for Tax Season",
+  "Benefits of Cloud Accounting with Xero",
+  "Financial Tips for Growing Businesses",
+] as const;
 
 export function Insights() {
   return (
-    <section id="insights" className="section section--paper2">
+    <section id="insights" className="section section--paper2" aria-labelledby="insights-heading" tabIndex={-1}>
       <div className="container">
-        <Reveal
-          className="section__head"
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "1rem", flexWrap: "wrap" }}
-        >
-          <SectionHeading eyebrow="Insights" title="Guidance to help you <em>run a sharper business</em>" />
-          <Button variant="ghost" iconRight="arrow-right" href="#insights">
-            View all articles
-          </Button>
+        <Reveal className="section__head section__head--center">
+          <SectionHeading
+            id="insights-heading"
+            align="center"
+            eyebrow="Insights"
+            title="Insights That Help Your Business Grow"
+          />
         </Reveal>
-        <div className="grid grid--4">
-          {ARTICLES.map(([category, title, date, readTime, image], i) => (
-            <Reveal key={title} delay={String(i + 1)}>
-              <ArticleCard
-                category={category}
-                title={title}
-                date={date}
-                readTime={readTime}
-                image={`/assets/media/${image}`}
-                alt={title}
-                href="#insights"
-              />
-            </Reveal>
+        <ul className="insights-preview">
+          {TOPICS.map((title, i) => (
+            <li key={title} className="insights-preview__item">
+              <Reveal delay={String(i + 1)}>
+                <div className="insights-preview__row">
+                  <span className="insights-preview__mark" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="insights-preview__title">{title}</span>
+                </div>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

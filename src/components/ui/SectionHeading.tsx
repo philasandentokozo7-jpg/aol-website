@@ -11,6 +11,7 @@ export interface SectionHeadingProps {
   as?: ElementType;
   eyebrowTone?: "gold" | "blue" | "onDark";
   className?: string;
+  id?: string;
 }
 
 /** SectionHeading — eyebrow + editorial serif title + optional lead paragraph. */
@@ -23,6 +24,7 @@ export function SectionHeading({
   as: Tag = "h2",
   eyebrowTone,
   className = "",
+  id,
 }: SectionHeadingProps) {
   const center = align === "center";
   const cls = [
@@ -43,9 +45,11 @@ export function SectionHeading({
       )}
       {title != null &&
         (typeof title === "string" ? (
-          <Tag className="aol-secheading__title" dangerouslySetInnerHTML={{ __html: title }} />
+          <Tag id={id} className="aol-secheading__title" dangerouslySetInnerHTML={{ __html: title }} />
         ) : (
-          <Tag className="aol-secheading__title">{title}</Tag>
+          <Tag id={id} className="aol-secheading__title">
+            {title}
+          </Tag>
         ))}
       {lead && <p className="aol-secheading__lead">{lead}</p>}
     </div>

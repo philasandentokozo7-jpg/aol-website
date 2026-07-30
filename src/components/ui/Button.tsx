@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { Icon, type IconName } from "./Icon";
 
@@ -57,6 +58,14 @@ export function Button({
   );
 
   if (href && !disabled) {
+    const isInternal = href.startsWith("/") || href.startsWith("#");
+    if (isInternal) {
+      return (
+        <Link className={cls} href={href} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+          {inner}
+        </Link>
+      );
+    }
     return (
       <a className={cls} href={href} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {inner}

@@ -1,0 +1,25 @@
+# Staging / preview configuration for Netlify.
+# Official production hosting may also use GitHub Pages — see docs/DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NEXT_PUBLIC_SITE_MODE = "staging"
+  NEXT_PUBLIC_INDEXING_ENABLED = "false"
+  NEXT_PUBLIC_PREVIEW_SITE_URL = "https://aol-accounting-academy.netlify.app"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
