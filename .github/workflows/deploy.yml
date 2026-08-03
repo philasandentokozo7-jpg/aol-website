@@ -36,7 +36,7 @@ jobs:
           NEXT_PUBLIC_SITE_MODE: ${{ vars.NEXT_PUBLIC_SITE_MODE || 'staging' }}
           NEXT_PUBLIC_INDEXING_ENABLED: ${{ vars.NEXT_PUBLIC_INDEXING_ENABLED || 'false' }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || '' }}
-          NEXT_PUBLIC_OFFICIAL_SITE_URL: ${{ vars.NEXT_PUBLIC_OFFICIAL_SITE_URL || 'https://www.aolaccounting.co.za' }}
+          NEXT_PUBLIC_OFFICIAL_SITE_URL: ${{ vars.NEXT_PUBLIC_OFFICIAL_SITE_URL || 'https://aolaccountants.co.za' }}
           NEXT_PUBLIC_PREVIEW_SITE_URL: ${{ vars.NEXT_PUBLIC_PREVIEW_SITE_URL || 'https://aol-accounting-academy.netlify.app' }}
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '' }}
         run: npm run build
@@ -44,15 +44,11 @@ jobs:
       - name: Ensure GitHub Pages files exist in output
         env:
           SITE_MODE: ${{ vars.NEXT_PUBLIC_SITE_MODE || 'staging' }}
-          OFFICIAL_HOST: www.aolaccounting.co.za
         run: |
           touch out/.nojekyll
-          # Write CNAME only when production mode is explicitly selected.
-          if [ "$SITE_MODE" = "production" ]; then
-            printf '%s' "$OFFICIAL_HOST" > out/CNAME
-          else
-            rm -f out/CNAME
-          fi
+          # Do not publish a CNAME from staging builds. Production host confirmation
+          # and custom-domain setup remain owner/hosting tasks.
+          rm -f out/CNAME
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -1025,3 +1025,13 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 @media (min-width: 760px) { .trust-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1040px) { .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
+.trust-company { margin-top: 2rem; }
+.trust-company__inner {
+  max-width: 760px; margin-inline: auto; text-align: center;
+  background: var(--paper-2); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem; display: grid; gap: .65rem;
+}
+.trust-company__inner p { margin: 0; color: var(--text-body); font-size: var(--text-base); line-height: 1.55; }
+.trust-company__inner strong { color: var(--navy-900); }
+.ftr__reg { font-size: var(--text-sm); color: var(--text-on-navy-faint); margin: 0; line-height: 1.45; }
+

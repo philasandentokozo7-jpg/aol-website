@@ -1,6 +1,9 @@
 /**
  * Central configuration for AOL Accounting Academy SA.
  * Nullable / env-controlled values must not be rendered when empty or placeholder.
+ *
+ * Privacy: never store or render the director’s personal name, ID number,
+ * tax number, residential address, or other private information in public output.
  */
 
 function env(name: string): string | undefined {
@@ -24,8 +27,8 @@ export const IS_PRODUCTION = SITE_MODE === "production";
 /** Indexing only when explicitly enabled in production mode. */
 export const INDEXING_ENABLED = IS_PRODUCTION && envBool("NEXT_PUBLIC_INDEXING_ENABLED", false);
 
-/** Official site URL (production). Do not hard-code Netlify as the future canonical. */
-export const OFFICIAL_SITE_URL = env("NEXT_PUBLIC_OFFICIAL_SITE_URL") ?? "https://www.aolaccounting.co.za";
+/** Official production site URL. Do not hard-code a staging URL as the final canonical. */
+export const OFFICIAL_SITE_URL = env("NEXT_PUBLIC_OFFICIAL_SITE_URL") ?? "https://aolaccountants.co.za";
 
 /** Staging / preview URL (Netlify or other). Not used as production canonical. */
 export const PREVIEW_SITE_URL = env("NEXT_PUBLIC_PREVIEW_SITE_URL") ?? "https://aol-accounting-academy.netlify.app";
@@ -38,16 +41,21 @@ export const PREVIEW_SITE_URL = env("NEXT_PUBLIC_PREVIEW_SITE_URL") ?? "https://
 export const SITE_URL =
   env("NEXT_PUBLIC_SITE_URL") ?? (IS_PRODUCTION ? OFFICIAL_SITE_URL : PREVIEW_SITE_URL);
 
-export const REGISTERED_COMPANY_NAME = env("NEXT_PUBLIC_REGISTERED_COMPANY_NAME") ?? null;
+export const REGISTERED_COMPANY_NAME = env("NEXT_PUBLIC_REGISTERED_COMPANY_NAME") ?? "AOL Accounting Academy SA";
 export const TRADING_NAME = env("NEXT_PUBLIC_TRADING_NAME") ?? "AOL Accounting Academy SA";
 
-export const COMPANY_REGISTRATION_NUMBER = env("NEXT_PUBLIC_COMPANY_REGISTRATION_NUMBER") ?? null;
-export const VAT_NUMBER = env("NEXT_PUBLIC_VAT_NUMBER") ?? null;
-export const VAT_STATUS = env("NEXT_PUBLIC_VAT_STATUS") ?? null;
+export const COMPANY_REGISTRATION_NUMBER =
+  env("NEXT_PUBLIC_COMPANY_REGISTRATION_NUMBER") ?? "2025/645278/07";
 
+/** AOL is not currently VAT registered — do not invent a VAT number. */
+export const VAT_NUMBER = env("NEXT_PUBLIC_VAT_NUMBER") ?? null;
+export const VAT_STATUS =
+  env("NEXT_PUBLIC_VAT_STATUS") ?? "AOL Accounting Academy SA is not currently VAT registered.";
+export const IS_VAT_REGISTERED = envBool("NEXT_PUBLIC_VAT_REGISTERED", false);
+
+/** Approved public website address only. */
 export const PHYSICAL_ADDRESS =
-  env("NEXT_PUBLIC_PHYSICAL_ADDRESS") ??
-  "27 Bram Fischer Road, Storage Solutions, 2nd Floor, Room 2-40, Durban, 4001";
+  env("NEXT_PUBLIC_PHYSICAL_ADDRESS") ?? "27 Bram Fischer Road, Durban, South Africa";
 
 export const POSTAL_ADDRESS = env("NEXT_PUBLIC_POSTAL_ADDRESS") ?? null;
 
@@ -56,9 +64,16 @@ export const PHONE_E164 = env("NEXT_PUBLIC_PHONE_E164") ?? "+27722067130";
 export const PHONE_HREF = `tel:${PHONE_E164}`;
 
 export const WHATSAPP_NUMBER = env("NEXT_PUBLIC_WHATSAPP_NUMBER") ?? "27722067130";
-export const WHATSAPP_URL = env("NEXT_PUBLIC_WHATSAPP_URL") ?? `https://wa.me/${WHATSAPP_NUMBER}`;
 
-/** Temporary verified contact email (if any). Null until verified. */
+const DEFAULT_WHATSAPP_MESSAGE =
+  "Hello AOL Accounting Academy SA, I would like to enquire about your accounting and business advisory services.";
+
+/** WhatsApp chat URL with a professional prefilled enquiry message. */
+export const WHATSAPP_URL =
+  env("NEXT_PUBLIC_WHATSAPP_URL") ??
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WHATSAPP_MESSAGE)}`;
+
+/** Temporary verified contact email (if any). Null until verified — never invent. */
 export const CONTACT_EMAIL = env("NEXT_PUBLIC_CONTACT_EMAIL") ?? null;
 
 /** Future official domain mailbox — configurable, not rendered until set. */
@@ -67,7 +82,13 @@ export const FUTURE_DOMAIN_EMAIL = env("NEXT_PUBLIC_FUTURE_DOMAIN_EMAIL") ?? nul
 export const PRIVACY_EMAIL = env("NEXT_PUBLIC_PRIVACY_EMAIL") ?? null;
 export const COMPLAINTS_EMAIL = env("NEXT_PUBLIC_COMPLAINTS_EMAIL") ?? null;
 
-export const INFORMATION_OFFICER_NAME = env("NEXT_PUBLIC_INFORMATION_OFFICER_NAME") ?? null;
+/**
+ * Public Information Officer designation only — never a personal name.
+ * Do not introduce an env var for the director’s personal name.
+ */
+export const INFORMATION_OFFICER_TITLE =
+  env("NEXT_PUBLIC_INFORMATION_OFFICER_TITLE") ?? "Director of AOL Accounting Academy SA";
+
 export const INFORMATION_OFFICER_EMAIL = env("NEXT_PUBLIC_INFORMATION_OFFICER_EMAIL") ?? null;
 
 export const BUSINESS_HOURS = env("NEXT_PUBLIC_BUSINESS_HOURS") ?? "Mon–Fri: 08:00–16:30";
@@ -79,8 +100,15 @@ export const SOCIAL_LINKS = {
   x: env("NEXT_PUBLIC_SOCIAL_X") ?? null,
 } as const;
 
-/** Owner-approved public claim; evidence still required before production indexing. */
-export const XERO_CERTIFIED_ADVISORS = envBool("NEXT_PUBLIC_XERO_CERTIFIED", true);
+/** Confirmed public Xero statement. */
+export const XERO_PUBLIC_STATEMENT =
+  env("NEXT_PUBLIC_XERO_PUBLIC_STATEMENT") ??
+  "AOL Accounting Academy SA has a Xero Certified Advisor. Certification and supporting documentation are available upon request.";
+
+/** Confirmed supporting-document statement. */
+export const SUPPORTING_DOCUMENTS_STATEMENT =
+  env("NEXT_PUBLIC_SUPPORTING_DOCUMENTS_STATEMENT") ??
+  "Company registration, professional certification and supporting documents are available upon request.";
 
 export const ANALYTICS_ID = env("NEXT_PUBLIC_ANALYTICS_ID") ?? null;
 
@@ -90,7 +118,7 @@ export const ANALYTICS_ID = env("NEXT_PUBLIC_ANALYTICS_ID") ?? null;
  */
 export const FORMSPREE_ENDPOINT = env("NEXT_PUBLIC_FORMSPREE_ENDPOINT") ?? "";
 
-export const POLICY_EFFECTIVE_DATE = env("NEXT_PUBLIC_POLICY_EFFECTIVE_DATE") ?? "2026-07-30";
+export const POLICY_EFFECTIVE_DATE = env("NEXT_PUBLIC_POLICY_EFFECTIVE_DATE") ?? "2026-08-03";
 
 export const BRAND = {
   name: TRADING_NAME,

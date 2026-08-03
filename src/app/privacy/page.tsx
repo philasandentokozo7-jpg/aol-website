@@ -2,16 +2,19 @@ import type { Metadata } from "next";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import {
   BUSINESS_HOURS,
+  COMPANY_REGISTRATION_NUMBER,
   CONTACT_EMAIL,
   INFORMATION_OFFICER_EMAIL,
-  INFORMATION_OFFICER_NAME,
+  INFORMATION_OFFICER_TITLE,
   isPublicValue,
   PHONE_DISPLAY,
   PHONE_HREF,
   PHYSICAL_ADDRESS,
   POLICY_EFFECTIVE_DATE,
   PRIVACY_EMAIL,
+  REGISTERED_COMPANY_NAME,
   TRADING_NAME,
+  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -21,21 +24,44 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const privacyContact = PRIVACY_EMAIL || CONTACT_EMAIL || INFORMATION_OFFICER_EMAIL;
+  const privacyEmail = PRIVACY_EMAIL || CONTACT_EMAIL || INFORMATION_OFFICER_EMAIL;
 
   return (
     <SiteChrome>
       <article className="section section--white legal">
         <div className="container legal__inner">
           <h1>Privacy Notice</h1>
-          <p className="legal__meta">Effective date: {POLICY_EFFECTIVE_DATE}. This page describes how {TRADING_NAME} handles personal information collected through this website.</p>
+          <p className="legal__meta">
+            Effective date: {POLICY_EFFECTIVE_DATE}. This page describes how {TRADING_NAME} handles personal information
+            collected through this website.
+          </p>
 
           <h2>Who we are</h2>
           <p>
-            {TRADING_NAME} operates this website to provide information about accounting, taxation, payroll, cloud
-            accounting, and business advisory services, and to receive consultation and enquiry requests.
+            This website is operated by {REGISTERED_COMPANY_NAME}
+            {isPublicValue(COMPANY_REGISTRATION_NUMBER)
+              ? ` (company registration number ${COMPANY_REGISTRATION_NUMBER})`
+              : ""}
+            . {TRADING_NAME} provides information about accounting, taxation, payroll, cloud accounting, and business
+            advisory services, and receives consultation and enquiry requests through this website.
           </p>
-          {isPublicValue(PHYSICAL_ADDRESS) ? <p>Service location: {PHYSICAL_ADDRESS}.</p> : null}
+          {isPublicValue(PHYSICAL_ADDRESS) ? <p>Public business address: {PHYSICAL_ADDRESS}.</p> : null}
+          {isPublicValue(VAT_STATUS) ? <p>{VAT_STATUS}</p> : null}
+
+          <h2>Information Officer</h2>
+          <p>
+            The Information Officer for {TRADING_NAME} is the {INFORMATION_OFFICER_TITLE}. Privacy enquiries may be made
+            using the telephone or WhatsApp contact details published on this website
+            {isPublicValue(privacyEmail) ? (
+              <>
+                {" "}
+                or by email at <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a>
+              </>
+            ) : (
+              <> until an official domain email address is published</>
+            )}
+            .
+          </p>
 
           <h2>Information we collect</h2>
           <p>When you use the consultation or enquiry form, we may collect:</p>
@@ -73,8 +99,7 @@ export default function PrivacyPage() {
           <h2>Retention</h2>
           <p>
             Enquiry records are retained only for as long as needed to respond to your request, manage the client
-            relationship if one follows, and meet legal or accounting record-keeping duties. Exact retention periods
-            will be confirmed by the business and updated here after legal review.
+            relationship if one follows, and meet legal or accounting record-keeping duties.
           </p>
 
           <h2>Your rights</h2>
@@ -85,20 +110,8 @@ export default function PrivacyPage() {
 
           <h2>Contact</h2>
           <ul>
-            {isPublicValue(privacyContact) ? (
-              <li>
-                Privacy contact: <a href={`mailto:${privacyContact}`}>{privacyContact}</a>
-              </li>
-            ) : (
-              <li>Privacy email: to be published once the official domain mailbox is active.</li>
-            )}
-            {isPublicValue(INFORMATION_OFFICER_NAME) ? <li>Information Officer: {INFORMATION_OFFICER_NAME}</li> : null}
-            {isPublicValue(INFORMATION_OFFICER_EMAIL) ? (
-              <li>
-                Information Officer email:{" "}
-                <a href={`mailto:${INFORMATION_OFFICER_EMAIL}`}>{INFORMATION_OFFICER_EMAIL}</a>
-              </li>
-            ) : null}
+            <li>Information Officer: {INFORMATION_OFFICER_TITLE}</li>
+            {isPublicValue(PHYSICAL_ADDRESS) ? <li>Address: {PHYSICAL_ADDRESS}</li> : null}
             {isPublicValue(PHONE_DISPLAY) ? (
               <li>
                 Phone: <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
@@ -112,11 +125,17 @@ export default function PrivacyPage() {
                 </a>
               </li>
             ) : null}
+            {isPublicValue(privacyEmail) ? (
+              <li>
+                Email: <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a>
+              </li>
+            ) : null}
             {isPublicValue(BUSINESS_HOURS) ? <li>Hours: {BUSINESS_HOURS}</li> : null}
           </ul>
 
           <p className="legal__note">
-            This notice describes current website behaviour and is pending owner/legal approval before production launch.
+            This notice describes current website behaviour and remains subject to owner review before production launch.
+            It does not claim that a lawyer has reviewed or certified this page.
           </p>
         </div>
       </article>

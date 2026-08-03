@@ -4,6 +4,7 @@ import "./globals.css";
 import {
   BRAND,
   BUSINESS_HOURS,
+  COMPANY_REGISTRATION_NUMBER,
   INDEXING_ENABLED,
   isPublicValue,
   OFFICIAL_SITE_URL,
@@ -29,11 +30,11 @@ const spectral = Spectral({
 });
 
 function buildJsonLd() {
-  const addressParts = PHYSICAL_ADDRESS?.split(",").map((p) => p.trim()) ?? [];
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
     name: TRADING_NAME,
+    legalName: TRADING_NAME,
     description:
       "Modern accounting and business advisory firm providing accounting, taxation, payroll, cloud accounting, and business advisory services for South African businesses.",
     url: SITE_URL,
@@ -57,13 +58,15 @@ function buildJsonLd() {
     ],
   };
 
+  if (isPublicValue(COMPANY_REGISTRATION_NUMBER)) {
+    data.identifier = COMPANY_REGISTRATION_NUMBER;
+  }
+
   if (isPublicValue(PHYSICAL_ADDRESS)) {
     data.address = {
       "@type": "PostalAddress",
-      streetAddress: addressParts.slice(0, -2).join(", ") || PHYSICAL_ADDRESS,
+      streetAddress: "27 Bram Fischer Road",
       addressLocality: "Durban",
-      addressRegion: "KwaZulu-Natal",
-      postalCode: "4001",
       addressCountry: "ZA",
     };
   }
@@ -84,7 +87,7 @@ function buildJsonLd() {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  alternates: { canonical: INDEXING_ENABLED ? OFFICIAL_SITE_URL + "/" : SITE_URL + "/" },
+  alternates: { canonical: INDEXING_ENABLED ? `${OFFICIAL_SITE_URL}/` : `${SITE_URL}/` },
   title: {
     default: `${TRADING_NAME} — Accounting, Tax & Advisory`,
     template: `%s | ${TRADING_NAME}`,
@@ -100,15 +103,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: TRADING_NAME,
     title: `${TRADING_NAME} — Accounting, Tax & Advisory`,
-    description:
-      "Professional Accounting. Strategic Business Advice. Sustainable Growth.",
+    description: "Professional Accounting. Strategic Business Advice. Sustainable Growth.",
     images: [{ url: BRAND.heroPoster, width: 1200, height: 630, alt: TRADING_NAME }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${TRADING_NAME} — Accounting, Tax & Advisory`,
-    description:
-      "Professional Accounting. Strategic Business Advice. Sustainable Growth.",
+    description: "Professional Accounting. Strategic Business Advice. Sustainable Growth.",
     images: [BRAND.heroPoster],
   },
 };
@@ -126,10 +127,7 @@ export default function RootLayout({
   return (
     <html lang="en-ZA" className={`${manrope.variable} ${spectral.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>{children}</body>
     </html>

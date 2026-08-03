@@ -8,6 +8,7 @@
 [build.environment]
   NEXT_PUBLIC_SITE_MODE = "staging"
   NEXT_PUBLIC_INDEXING_ENABLED = "false"
+  NEXT_PUBLIC_OFFICIAL_SITE_URL = "https://aolaccountants.co.za"
   NEXT_PUBLIC_PREVIEW_SITE_URL = "https://aol-accounting-academy.netlify.app"
 
 [[headers]]

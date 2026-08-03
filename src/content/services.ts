@@ -10,21 +10,24 @@ export type ServiceItem = {
 
 /**
  * Ten service names are locked.
- * Eight descriptions are locked owner copy.
- * Accounting & Bookkeeping and Payroll Administration have no approved
- * replacement descriptions — keep title-only until the client supplies them.
+ * Eight original owner descriptions remain locked.
+ * Accounting & Bookkeeping ends with the owner-supplied closing sentence.
+ * Payroll Administration uses the established payroll scope already present
+ * in the project (PAYE, UIF, SDL, payslips, submissions and records).
  */
 export const SERVICES: ServiceItem[] = [
   {
     icon: "calculator",
     title: "Accounting & Bookkeeping",
-    description: null,
+    description:
+      "Clear and current financial records are essential for compliance and informed decision-making. We provide accounting and bookkeeping support that includes systematic transaction recording, reconciliations, and organised financial information using modern cloud-based systems. Whether you are a startup, a growing enterprise, or an established organisation, our tailored bookkeeping solutions are designed to improve financial control, strengthen reporting accuracy and support confident business decisions.",
     slug: "accounting-bookkeeping",
   },
   {
     icon: "receipt",
     title: "Payroll Administration",
-    description: null,
+    description:
+      "Payroll must be accurate, confidential, and submitted on time. We assist businesses with payroll processing, payslip preparation, and the handling of PAYE, UIF and SDL calculations, submissions and records so employees are paid correctly while statutory obligations remain up to date.",
     slug: "payroll-administration",
   },
   {

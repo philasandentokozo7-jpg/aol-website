@@ -3,6 +3,7 @@ import { Icon } from "../ui/Icon";
 import {
   BRAND,
   BUSINESS_HOURS,
+  COMPANY_REGISTRATION_NUMBER,
   CONTACT_EMAIL,
   isPublicValue,
   PHONE_DISPLAY,
@@ -10,6 +11,7 @@ import {
   PHYSICAL_ADDRESS,
   publicSocialLinks,
   TRADING_NAME,
+  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -49,6 +51,10 @@ export function Footer() {
               network of qualified accountants, tax professionals, payroll specialists, financial consultants, and Xero
               Certified Advisors dedicated to helping businesses achieve sustainable financial success.
             </p>
+            {isPublicValue(COMPANY_REGISTRATION_NUMBER) ? (
+              <p className="ftr__reg">Company registration number: {COMPANY_REGISTRATION_NUMBER}</p>
+            ) : null}
+            {isPublicValue(VAT_STATUS) ? <p className="ftr__reg">{VAT_STATUS}</p> : null}
             {social.length > 0 ? (
               <div className="ftr__social">
                 {social.map((s) => (

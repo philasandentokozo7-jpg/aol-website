@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { SiteChrome } from "@/components/layout/SiteChrome";
-import { ANALYTICS_ID, isPublicValue, POLICY_EFFECTIVE_DATE, TRADING_NAME } from "@/config/site";
+import {
+  ANALYTICS_ID,
+  COMPANY_REGISTRATION_NUMBER,
+  isPublicValue,
+  PHYSICAL_ADDRESS,
+  POLICY_EFFECTIVE_DATE,
+  REGISTERED_COMPANY_NAME,
+  TRADING_NAME,
+} from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
@@ -15,9 +23,14 @@ export default function CookiesPage() {
           <h1>Cookie Policy</h1>
           <p className="legal__meta">Effective date: {POLICY_EFFECTIVE_DATE}.</p>
 
-          <h2>What this policy covers</h2>
+          <h2>Who this policy covers</h2>
           <p>
-            This Cookie Policy explains how {TRADING_NAME} uses cookies and similar technologies on this website.
+            This Cookie Policy explains how {REGISTERED_COMPANY_NAME}
+            {isPublicValue(COMPANY_REGISTRATION_NUMBER)
+              ? ` (company registration number ${COMPANY_REGISTRATION_NUMBER})`
+              : ""}
+            , trading as {TRADING_NAME}, uses cookies and similar technologies on this website
+            {isPublicValue(PHYSICAL_ADDRESS) ? <> at {PHYSICAL_ADDRESS}</> : null}.
           </p>
 
           <h2>Essential operation</h2>
@@ -36,8 +49,9 @@ export default function CookiesPage() {
             </p>
           ) : (
             <p>
-              No third-party analytics identifier is currently configured for this website. If analytics is added later,
-              it will be documented here and will not run before required consent.
+              No third-party analytics identifier is currently configured for this website. Non-essential tracking is
+              not used. If analytics is added later, it will be documented here and will not run before required
+              consent.
             </p>
           )}
 
@@ -48,7 +62,8 @@ export default function CookiesPage() {
           </p>
 
           <p className="legal__note">
-            This policy describes current website behaviour and is pending owner/legal approval before production launch.
+            This policy describes current website behaviour and remains subject to owner review before production launch.
+            It does not claim that a lawyer has reviewed or certified this page.
           </p>
         </div>
       </article>

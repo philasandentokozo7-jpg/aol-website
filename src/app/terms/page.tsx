@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import {
+  COMPANY_REGISTRATION_NUMBER,
   isPublicValue,
   PHONE_DISPLAY,
   PHONE_HREF,
   PHYSICAL_ADDRESS,
   POLICY_EFFECTIVE_DATE,
+  REGISTERED_COMPANY_NAME,
   TRADING_NAME,
+  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -25,10 +28,16 @@ export default function TermsPage() {
 
           <h2>About this website</h2>
           <p>
-            This website is operated by {TRADING_NAME}. It provides general information about accounting, taxation,
-            payroll, cloud accounting, business advisory, and related services. Website content is not personalised
-            professional advice until a formal engagement is agreed.
+            This website is operated by {REGISTERED_COMPANY_NAME}
+            {isPublicValue(COMPANY_REGISTRATION_NUMBER)
+              ? ` (company registration number ${COMPANY_REGISTRATION_NUMBER})`
+              : ""}
+            , trading as {TRADING_NAME}. It provides general information about accounting, taxation, payroll, cloud
+            accounting, business advisory, and related services. Website content is not personalised professional advice
+            until a formal engagement is agreed.
           </p>
+          {isPublicValue(PHYSICAL_ADDRESS) ? <p>Public business address: {PHYSICAL_ADDRESS}.</p> : null}
+          {isPublicValue(VAT_STATUS) ? <p>{VAT_STATUS}</p> : null}
 
           <h2>No guarantee of outcomes</h2>
           <p>
@@ -47,7 +56,7 @@ export default function TermsPage() {
           <p>
             Submitting a consultation request does not create a client relationship. We will respond using the contact
             details you provide. Online form delivery depends on the configured submission provider; if the form is
-            unavailable, WhatsApp or phone contact may be offered instead.
+            unavailable, WhatsApp or telephone contact may be offered instead.
           </p>
 
           <h2>Intellectual property</h2>
@@ -80,7 +89,8 @@ export default function TermsPage() {
           </ul>
 
           <p className="legal__note">
-            These terms describe current website use and are pending owner/legal approval before production launch.
+            These terms describe current website use and remain subject to owner review before production launch. They
+            do not claim that a lawyer has reviewed or certified this page.
           </p>
         </div>
       </article>

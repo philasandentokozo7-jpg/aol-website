@@ -1,6 +1,13 @@
 import { Icon, type IconName } from "../ui/Icon";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../interactive/Reveal";
+import {
+  COMPANY_REGISTRATION_NUMBER,
+  isPublicValue,
+  SUPPORTING_DOCUMENTS_STATEMENT,
+  TRADING_NAME,
+  XERO_PUBLIC_STATEMENT,
+} from "@/config/site";
 
 const TRUST_POINTS: Array<[IconName, string, string]> = [
   [
@@ -47,6 +54,20 @@ export function WhyTrust() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="trust-company">
+          <div className="trust-company__inner">
+            {isPublicValue(COMPANY_REGISTRATION_NUMBER) ? (
+              <p>
+                <strong>{TRADING_NAME}</strong>
+                {" · Company registration number: "}
+                {COMPANY_REGISTRATION_NUMBER}
+              </p>
+            ) : null}
+            {isPublicValue(XERO_PUBLIC_STATEMENT) ? <p>{XERO_PUBLIC_STATEMENT}</p> : null}
+            {isPublicValue(SUPPORTING_DOCUMENTS_STATEMENT) ? <p>{SUPPORTING_DOCUMENTS_STATEMENT}</p> : null}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

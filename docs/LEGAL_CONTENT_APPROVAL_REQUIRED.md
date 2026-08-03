@@ -10,22 +10,20 @@
 
 ## Technical corrections completed
 
-* Footer now links to Privacy Notice, Cookie Policy, and Terms of Use (no `#` placeholders)
+* Footer links to Privacy Notice, Cookie Policy, and Terms of Use
 * Forms explain purpose of collection and link to Privacy Notice
-* Optional marketing consent added and left unticked
-* No fake company registration, VAT number, or Information Officer identity published
-* No placeholder emails displayed
+* Optional marketing consent left unticked
+* Confirmed company name, registration number, public address, phone and VAT status added
+* Information Officer shown only as “Director of AOL Accounting Academy SA”
+* No invented email addresses; phone/WhatsApp used until domain email is supplied
+* No director personal name published
 * Staging remains noindex until production launch configuration is enabled
 
 ## Missing verified business information
 
-* Registered company name (if distinct)
-* Company registration number
-* VAT number / status
-* Information Officer identity and contact
-* Privacy / complaints mailbox addresses
-* Confirmed retention periods
-* Confirmed postal address (if different from physical)
+* Privacy / complaints mailbox addresses on the official domain
+* Confirmed postal address (if different from the public business address)
+* Any longer owner-authorised Payroll Administration paragraph beyond the established scope already used
 
 ## Clauses needing owner approval
 
@@ -37,13 +35,12 @@
 
 ## Privacy contacts still needed
 
-* Privacy email
-* Complaints email
-* Information Officer name + email
+* Official privacy email
+* Official complaints email
 
 ## Production-launch blockers (legal)
 
-* Owner/legal sign-off on the three legal pages
+* Owner review/sign-off on the three legal pages
 * Domain email contacts published
-* Claim evidence for locked professional / Xero wording (see claims register)
-* Indexing remains disabled until the above are complete
+* DNS/HTTPS and production indexing flags
+* Indexing remains disabled until launch QA is complete

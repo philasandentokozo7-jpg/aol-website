@@ -7,13 +7,13 @@ Current defaults:
 * `NEXT_PUBLIC_SITE_MODE=staging`
 * `NEXT_PUBLIC_INDEXING_ENABLED=false`
 * Preview reference: `https://aol-accounting-academy.netlify.app/`
-* Intended official host (when purchased): `www.aolaccounting.co.za` (configurable)
+* Intended official production domain: `https://aolaccountants.co.za` (configurable via `NEXT_PUBLIC_OFFICIAL_SITE_URL`)
 
 ## Post-purchase steps
 
 1. **Add the domain to the hosting provider**
    * Netlify: Domain management → Add custom domain.
-   * GitHub Pages: set custom domain after DNS is ready; production workflow writes `CNAME` only when `NEXT_PUBLIC_SITE_MODE=production`.
+   * GitHub Pages / Netlify: set the custom domain in the host dashboard after DNS is ready. The repository does not publish a `CNAME` file from staging builds.
 
 2. **Connect the required DNS records**
    * Follow the host’s exact A / ALIAS / CNAME instructions for apex and `www`.
@@ -32,8 +32,8 @@ Current defaults:
 6. **Update the production site URL**
    * Set repository/hosting env vars:
      * `NEXT_PUBLIC_SITE_MODE=production`
-     * `NEXT_PUBLIC_SITE_URL=https://www.aolaccounting.co.za` (or chosen primary)
-     * `NEXT_PUBLIC_OFFICIAL_SITE_URL=...`
+     * `NEXT_PUBLIC_SITE_URL=https://aolaccountants.co.za`
+     * `NEXT_PUBLIC_OFFICIAL_SITE_URL=https://aolaccountants.co.za`
 
 7. **Activate canonical URLs**
    * Rebuild so metadata `alternates.canonical` and Open Graph URLs use the official domain.
