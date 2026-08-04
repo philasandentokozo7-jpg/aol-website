@@ -46,16 +46,21 @@ Current defaults:
    * Rebuild so `robots.ts` allows crawling and includes the sitemap.
 
 10. **Create the official domain mailbox**
-    * Provision Google Workspace / Microsoft 365 / chosen host on the domain.
+    * Provision Google Workspace (or chosen host) on `aolaccountants.co.za`.
 
-11. **Select final addresses**
-    * Choose names such as enquiries, accounts, privacy, or complaints — do not assume exact local-parts until the owner decides.
-    * Set env values: `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_PRIVACY_EMAIL`, `NEXT_PUBLIC_COMPLAINTS_EMAIL`, `NEXT_PUBLIC_FUTURE_DOMAIN_EMAIL`.
+11. **Approved public addresses (already in site config)**
+    * `info@aolaccountants.co.za` — general enquiries (footer primary)
+    * `accounts@aolaccountants.co.za` — accounts and billing
+    * `privacy@aolaccountants.co.za` — privacy / POPIA / Information Officer
+    * `office@aolaccountants.co.za` — office contact; primary Google Workspace mailbox (active)
+    * Aliases configured in Google Admin: `info@`, `accounts@`, `privacy@` (deliver to `office@`)
+    * Before production launch: send a receive test to all four addresses (blocking).
+    * Optional env overrides: `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_ACCOUNTS_EMAIL`, `NEXT_PUBLIC_PRIVACY_EMAIL`, `NEXT_PUBLIC_OFFICE_EMAIL`.
 
 12. **Update form delivery and reply-to settings**
-    * Create/configure Formspree (or equivalent) endpoint.
-    * Set `NEXT_PUBLIC_FORMSPREE_ENDPOINT`.
-    * Set reply-to / notification recipients to the new domain mailbox.
+    * Confirm Netlify Forms detected `aol-website-enquiries` after deploy.
+    * Configure Netlify form **notifications** to **`office@aolaccountants.co.za`** (dashboard only — the form does not POST to an email address).
+    * Run the end-to-end checks in `docs/FORM_TESTING.md`.
 
 13. **Add SPF**
     * Publish the SPF TXT record required by the mailbox provider.
@@ -75,8 +80,8 @@ Current defaults:
     * Confirm notification email and optional auto-reply.
 
 18. **Update footer and legal contact details**
-    * Publish verified emails once live.
-    * Confirm address, phone, hours, Information Officer details.
+    * Approved emails are already published in footer / Privacy / Terms.
+    * Confirm address, phone, hours, Information Officer details, and that all four addresses receive mail.
 
 19. **Add Search Console**
     * Verify the **official** domain only (not the Netlify preview as the final property).

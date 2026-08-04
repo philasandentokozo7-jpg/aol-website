@@ -1,5 +1,6 @@
 import { Header } from "@/components/interactive/Header";
 import { ConsultationModal } from "@/components/interactive/ConsultationModal";
+import { NetlifyFormsDetector } from "@/components/interactive/NetlifyFormsDetector";
 import { REVEAL_SCRIPT } from "@/components/interactive/Reveal";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -33,6 +34,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <NetlifyFormsDetector />
       <ConsultationModal />
       <AnchorFocus />
 

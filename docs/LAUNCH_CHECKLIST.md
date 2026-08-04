@@ -7,7 +7,7 @@
 - [x] Fake testimonials removed from public display
 - [x] Fake insight dates / non-functional article links removed
 - [x] Fake statistics not displayed
-- [x] Forms fail honestly when endpoint missing
+- [x] Forms use Netlify Forms with honest failure handling and thank-you only after success
 - [x] Privacy / cookies / terms routes exist
 - [x] 404 page exists
 - [x] Staging noindex active by default
@@ -21,8 +21,9 @@
 - [ ] `NEXT_PUBLIC_SITE_MODE=production`
 - [ ] `NEXT_PUBLIC_SITE_URL` / official URL set
 - [ ] `NEXT_PUBLIC_INDEXING_ENABLED=true` only after QA
-- [ ] Domain mailboxes created and tested
-- [ ] Form endpoint connected and end-to-end tested
+- [x] Google Workspace: `office@` primary active; aliases `info@`, `accounts@`, `privacy@` configured
+- [ ] Blocking: send/receive test to all four addresses (`info@`, `accounts@`, `privacy@`, `office@`)
+- [ ] Netlify Forms notifications set to `office@aolaccountants.co.za` and end-to-end tested (`docs/FORM_TESTING.md`)
 - [ ] SPF / DKIM / DMARC configured
 - [ ] Legal pages approved
 - [ ] Claim evidence confirmed or accepted as business risk by owner

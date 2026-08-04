@@ -47,10 +47,9 @@ export const TRADING_NAME = env("NEXT_PUBLIC_TRADING_NAME") ?? "AOL Accounting A
 export const COMPANY_REGISTRATION_NUMBER =
   env("NEXT_PUBLIC_COMPANY_REGISTRATION_NUMBER") ?? "2025/645278/07";
 
-/** AOL is not currently VAT registered — do not invent a VAT number. */
+/** VAT number/status are optional and not shown publicly unless explicitly set. */
 export const VAT_NUMBER = env("NEXT_PUBLIC_VAT_NUMBER") ?? null;
-export const VAT_STATUS =
-  env("NEXT_PUBLIC_VAT_STATUS") ?? "AOL Accounting Academy SA is not currently VAT registered.";
+export const VAT_STATUS = env("NEXT_PUBLIC_VAT_STATUS") ?? null;
 export const IS_VAT_REGISTERED = envBool("NEXT_PUBLIC_VAT_REGISTERED", false);
 
 /** Approved public website address only. */
@@ -73,13 +72,37 @@ export const WHATSAPP_URL =
   env("NEXT_PUBLIC_WHATSAPP_URL") ??
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WHATSAPP_MESSAGE)}`;
 
-/** Temporary verified contact email (if any). Null until verified — never invent. */
-export const CONTACT_EMAIL = env("NEXT_PUBLIC_CONTACT_EMAIL") ?? null;
+/**
+ * Approved public domain email addresses (aolaccountants.co.za).
+ * Netlify Forms notifications are configured in the Netlify dashboard to
+ * OFFICE_EMAIL — not as a client-side form action or secret env routing var.
+ */
+export const EMAIL_INFO = "info@aolaccountants.co.za" as const;
+export const EMAIL_ACCOUNTS = "accounts@aolaccountants.co.za" as const;
+export const EMAIL_PRIVACY = "privacy@aolaccountants.co.za" as const;
+export const EMAIL_OFFICE = "office@aolaccountants.co.za" as const;
 
-/** Future official domain mailbox — configurable, not rendered until set. */
+export const MAILTO_INFO = `mailto:${EMAIL_INFO}` as const;
+export const MAILTO_ACCOUNTS = `mailto:${EMAIL_ACCOUNTS}` as const;
+export const MAILTO_PRIVACY = `mailto:${EMAIL_PRIVACY}` as const;
+export const MAILTO_OFFICE = `mailto:${EMAIL_OFFICE}` as const;
+
+/** Primary public enquiries address (footer / general contact). */
+export const CONTACT_EMAIL = env("NEXT_PUBLIC_CONTACT_EMAIL") ?? EMAIL_INFO;
+
+/** Accounts and billing. */
+export const ACCOUNTS_EMAIL = env("NEXT_PUBLIC_ACCOUNTS_EMAIL") ?? EMAIL_ACCOUNTS;
+
+/** Privacy, POPIA and Information Officer enquiries. */
+export const PRIVACY_EMAIL = env("NEXT_PUBLIC_PRIVACY_EMAIL") ?? EMAIL_PRIVACY;
+
+/** Office contact; also the Netlify Forms notification recipient (dashboard-only). */
+export const OFFICE_EMAIL = env("NEXT_PUBLIC_OFFICE_EMAIL") ?? EMAIL_OFFICE;
+
+/** Optional extra mailbox override — not rendered unless set to a public value. */
 export const FUTURE_DOMAIN_EMAIL = env("NEXT_PUBLIC_FUTURE_DOMAIN_EMAIL") ?? null;
 
-export const PRIVACY_EMAIL = env("NEXT_PUBLIC_PRIVACY_EMAIL") ?? null;
+/** Optional complaints mailbox — not invented; null until explicitly set. */
 export const COMPLAINTS_EMAIL = env("NEXT_PUBLIC_COMPLAINTS_EMAIL") ?? null;
 
 /**
@@ -89,7 +112,8 @@ export const COMPLAINTS_EMAIL = env("NEXT_PUBLIC_COMPLAINTS_EMAIL") ?? null;
 export const INFORMATION_OFFICER_TITLE =
   env("NEXT_PUBLIC_INFORMATION_OFFICER_TITLE") ?? "Director of AOL Accounting Academy SA";
 
-export const INFORMATION_OFFICER_EMAIL = env("NEXT_PUBLIC_INFORMATION_OFFICER_EMAIL") ?? null;
+export const INFORMATION_OFFICER_EMAIL =
+  env("NEXT_PUBLIC_INFORMATION_OFFICER_EMAIL") ?? EMAIL_PRIVACY;
 
 export const BUSINESS_HOURS = env("NEXT_PUBLIC_BUSINESS_HOURS") ?? "Mon–Fri: 08:00–16:30";
 
@@ -111,12 +135,6 @@ export const SUPPORTING_DOCUMENTS_STATEMENT =
   "Company registration, professional certification and supporting documents are available upon request.";
 
 export const ANALYTICS_ID = env("NEXT_PUBLIC_ANALYTICS_ID") ?? null;
-
-/**
- * Formspree (or compatible) endpoint.
- * Leave empty until a real endpoint is configured — the form must not fake success.
- */
-export const FORMSPREE_ENDPOINT = env("NEXT_PUBLIC_FORMSPREE_ENDPOINT") ?? "";
 
 export const POLICY_EFFECTIVE_DATE = env("NEXT_PUBLIC_POLICY_EFFECTIVE_DATE") ?? "2026-08-03";
 

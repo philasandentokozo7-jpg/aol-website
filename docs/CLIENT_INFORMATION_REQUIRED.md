@@ -5,10 +5,10 @@
 | Item | Why needed | Current status |
 |---|---|---|
 | Official domain DNS + HTTPS for `aolaccountants.co.za` | Canonical URLs, email, Search Console | Configured in code as intended production URL; DNS/HTTPS not completed by this task |
-| Final domain email addresses (enquiries / privacy / complaints or chosen equivalents) | Forms, legal contacts, footer | Not published; phone/WhatsApp used until supplied |
-| Formspree (or equivalent) endpoint | Honest online consultation delivery | `NEXT_PUBLIC_FORMSPREE_ENDPOINT` empty — WhatsApp fallback shown |
+| Confirm Google Workspace aliases can receive mail | Blocking pre-launch check for all four approved addresses | Primary mailbox `office@aolaccountants.co.za` active; aliases `info@`, `accounts@`, and `privacy@` configured in Google Admin. Send a receive test to each address before production launch |
+| Netlify Forms notification recipient | Delivery of `aol-website-enquiries` submissions | Configure in Netlify dashboard to **`office@aolaccountants.co.za`** after first form-detecting deploy (not a client-side form action) |
 | Final social-media URLs | Footer social row | Hidden until verified URLs supplied |
-| Owner review of Privacy Notice, Cookie Policy, Terms of Use | Production legal readiness | Updated with confirmed public business facts; pending owner review |
+| Owner review of Privacy Notice, Cookie Policy, Terms of Use | Production legal readiness | Updated with confirmed public business facts, approved emails, and Netlify Forms wording; pending owner review |
 | Owner confirmation of Accounting & Bookkeeping opening sentences | Full service paragraph | Closing sentence is owner-supplied; opening sentences completed professionally because the incomplete original was not present in the repository |
 | Owner confirmation of Payroll Administration full wording | Full service paragraph | Built from established payroll scope already in the project (PAYE/UIF/SDL/payslips/submissions/records); confirm if a longer owner paragraph exists |
 
@@ -19,9 +19,15 @@
 * Public address: 27 Bram Fischer Road, Durban, South Africa
 * Telephone / WhatsApp: +27 72 206 7130
 * Production domain target: https://aolaccountants.co.za
-* VAT status: not currently VAT registered
 * Information Officer public wording: Director of AOL Accounting Academy SA
 * Supporting-document and Xero certification-upon-request statements
+* VAT status is not shown publicly (owner request)
+* Enquiry form uses Netlify Forms (`aol-website-enquiries`)
+* Approved public emails in site config:
+  * `info@aolaccountants.co.za` — general enquiries (footer primary)
+  * `accounts@aolaccountants.co.za` — accounts and billing (Terms)
+  * `privacy@aolaccountants.co.za` — privacy / POPIA / Information Officer
+  * `office@aolaccountants.co.za` — office contact; Netlify Forms notification recipient (dashboard)
 
 ## Optional future additions
 

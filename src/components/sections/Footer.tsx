@@ -6,12 +6,14 @@ import {
   COMPANY_REGISTRATION_NUMBER,
   CONTACT_EMAIL,
   isPublicValue,
+  MAILTO_INFO,
+  MAILTO_OFFICE,
+  OFFICE_EMAIL,
   PHONE_DISPLAY,
   PHONE_HREF,
   PHYSICAL_ADDRESS,
   publicSocialLinks,
   TRADING_NAME,
-  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -54,7 +56,6 @@ export function Footer() {
             {isPublicValue(COMPANY_REGISTRATION_NUMBER) ? (
               <p className="ftr__reg">Company registration number: {COMPANY_REGISTRATION_NUMBER}</p>
             ) : null}
-            {isPublicValue(VAT_STATUS) ? <p className="ftr__reg">{VAT_STATUS}</p> : null}
             {social.length > 0 ? (
               <div className="ftr__social">
                 {social.map((s) => (
@@ -109,7 +110,15 @@ export function Footer() {
                 <li>
                   <Icon name="mail" size={17} />
                   <span>
-                    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                    Enquiries: <a href={MAILTO_INFO}>{CONTACT_EMAIL}</a>
+                  </span>
+                </li>
+              ) : null}
+              {isPublicValue(OFFICE_EMAIL) ? (
+                <li>
+                  <Icon name="mail" size={17} />
+                  <span>
+                    Office: <a href={MAILTO_OFFICE}>{OFFICE_EMAIL}</a>
                   </span>
                 </li>
               ) : null}

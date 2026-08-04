@@ -13,15 +13,17 @@
 * Footer links to Privacy Notice, Cookie Policy, and Terms of Use
 * Forms explain purpose of collection and link to Privacy Notice
 * Optional marketing consent left unticked
-* Confirmed company name, registration number, public address, phone and VAT status added
+* Privacy Notice states enquiry data is processed through Netlify’s form-handling service
+* Confirmed company name, registration number, public address and phone added
+* VAT status statement removed from public pages at owner request
 * Information Officer shown only as “Director of AOL Accounting Academy SA”
-* No invented email addresses; phone/WhatsApp used until domain email is supplied
+* Approved public emails published: `info@`, `accounts@`, `privacy@`, `office@` @ aolaccountants.co.za
 * No director personal name published
 * Staging remains noindex until production launch configuration is enabled
 
 ## Missing verified business information
 
-* Privacy / complaints mailbox addresses on the official domain
+* Optional complaints mailbox (if different from privacy@) — not invented
 * Confirmed postal address (if different from the public business address)
 * Any longer owner-authorised Payroll Administration paragraph beyond the established scope already used
 
@@ -33,14 +35,15 @@
 * Limitation language around outcomes and non-advisory website content
 * Cookie / analytics consent mechanism once analytics is introduced
 
-## Privacy contacts still needed
+## Privacy contacts
 
-* Official privacy email
-* Official complaints email
+* Privacy / POPIA / Information Officer: `privacy@aolaccountants.co.za` (implemented)
+* Optional separate complaints mailbox: not set (do not invent)
 
 ## Production-launch blockers (legal)
 
 * Owner review/sign-off on the three legal pages
-* Domain email contacts published
+* Confirm all four approved addresses can receive email (blocking receive test)
+* Google Workspace aliases `info@`, `accounts@`, `privacy@` are configured on the `office@` primary mailbox
 * DNS/HTTPS and production indexing flags
 * Indexing remains disabled until launch QA is complete

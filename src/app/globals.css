@@ -728,8 +728,18 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   background:
     radial-gradient(60% 60% at 12% 0%, rgba(30,111,220,.08), transparent 60%),
     radial-gradient(50% 50% at 100% 20%, rgba(199,162,76,.07), transparent 55%); }
-.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
-.hero__copy { display: flex; flex-direction: column; gap: 1.35rem; max-width: 640px; }
+.hero__grid {
+  position: relative; z-index: 1; display: grid; grid-template-columns: 1fr;
+  grid-template-areas:
+    "intro"
+    "visual"
+    "body";
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.hero__intro { grid-area: intro; display: flex; flex-direction: column; gap: 1rem; max-width: 640px; }
+.hero__visual { grid-area: visual; }
+.hero__body { grid-area: body; display: flex; flex-direction: column; gap: 1.35rem; max-width: 640px; }
 .hero__brand {
   font-family: var(--font-sans); font-weight: 800; font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   letter-spacing: .02em; color: var(--navy-900); margin: 0;
@@ -823,6 +833,20 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 .modal__check { display: flex; gap: .7rem; align-items: flex-start; font-size: var(--text-sm); color: var(--text-body); line-height: 1.45; }
 .modal__check input { margin-top: .2rem; width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: var(--brand-primary); }
 .modal__form-error { margin: 0; color: var(--danger); background: var(--danger-bg); border: 1px solid rgba(192,57,43,.25); border-radius: var(--radius-sm); padding: .75rem .9rem; font-size: var(--text-sm); }
+
+/* Netlify Forms: detection form + honeypot — never shown or focused for visitors */
+.netlify-form-detector {
+  position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+  pointer-events: none !important;
+}
+.netlify-honeypot {
+  position: absolute !important; left: -10000px !important; top: auto !important;
+  width: 1px !important; height: 1px !important; overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important;
+  pointer-events: none !important;
+}
 .grid--industries { grid-template-columns: 1fr 1fr; gap: .75rem; }
 
 /* ---- Pricing ---- */
@@ -937,7 +961,18 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   .hdr__nav { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 1.9rem); }
   .hdr .hdr__cta { display: inline-flex; }
   .hdr__burger { display: none; }
-  .hero__grid { grid-template-columns: 1.05fr .95fr; }
+  .hero__grid {
+    grid-template-columns: 1.05fr .95fr;
+    grid-template-areas:
+      "intro visual"
+      "body visual";
+    align-items: center;
+    column-gap: clamp(2rem, 4vw, 3.5rem);
+    row-gap: 1.35rem;
+  }
+  .hero__intro, .hero__body { max-width: none; }
+  .hero__visual { align-self: stretch; display: flex; }
+  .hero__visual .hero__frame { width: 100%; }
   .about__grid { grid-template-columns: .95fr 1.05fr; }
   .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }

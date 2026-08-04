@@ -12,7 +12,7 @@
 | Lint | `npm run lint` |
 | Typecheck | `npm run typecheck` |
 | Deployment | GitHub Pages workflow + Netlify staging config (`netlify.toml`) |
-| Form provider | Formspree via `NEXT_PUBLIC_FORMSPREE_ENDPOINT` (empty → honest WhatsApp fallback) |
+| Form provider | Netlify Forms (`aol-website-enquiries`); WhatsApp/phone remain alternative contact options |
 | Analytics | Not configured |
 | Preview inspected | https://aol-accounting-academy.netlify.app/ (pre-remediation content matched repo) |
 
@@ -37,10 +37,11 @@
 * Labels, required markers, purpose text, Privacy Notice link: yes
 * Optional marketing consent, unticked: yes
 * Validation + accessible error alert: yes
-* Success only after provider success: yes
-* Unconfigured endpoint does not fake success: yes
-* Honeypot present: yes
+* Success only after Netlify Forms success response: yes
+* Failure stays on form with accessible error (no fake success): yes
+* Honeypot (`bot-field` + `netlify-honeypot`): yes
 * Double-submit guard via `sending` state: yes
+* Static-export detection form (`NetlifyFormsDetector`): yes
 
 ## Accessibility (implemented)
 
@@ -75,6 +76,7 @@
 ## Remaining blockers to official production launch
 
 1. Domain purchase + DNS + HTTPS
-2. Domain email + form endpoint
-3. Legal approval + claim evidence confirmation
-4. Flip env flags and rebuild for indexing
+2. Confirm all four approved addresses receive email; confirm `info@` / `accounts@` / `privacy@` Workspace aliases (`office@` active and tested)
+3. Netlify Forms notifications to `office@aolaccountants.co.za` after first detecting deploy
+4. Legal approval + claim evidence confirmation
+5. Flip env flags and rebuild for indexing

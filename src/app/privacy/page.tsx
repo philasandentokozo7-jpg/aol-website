@@ -3,10 +3,9 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import {
   BUSINESS_HOURS,
   COMPANY_REGISTRATION_NUMBER,
-  CONTACT_EMAIL,
-  INFORMATION_OFFICER_EMAIL,
   INFORMATION_OFFICER_TITLE,
   isPublicValue,
+  MAILTO_PRIVACY,
   PHONE_DISPLAY,
   PHONE_HREF,
   PHYSICAL_ADDRESS,
@@ -14,7 +13,6 @@ import {
   PRIVACY_EMAIL,
   REGISTERED_COMPANY_NAME,
   TRADING_NAME,
-  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -24,8 +22,6 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const privacyEmail = PRIVACY_EMAIL || CONTACT_EMAIL || INFORMATION_OFFICER_EMAIL;
-
   return (
     <SiteChrome>
       <article className="section section--white legal">
@@ -46,21 +42,13 @@ export default function PrivacyPage() {
             advisory services, and receives consultation and enquiry requests through this website.
           </p>
           {isPublicValue(PHYSICAL_ADDRESS) ? <p>Public business address: {PHYSICAL_ADDRESS}.</p> : null}
-          {isPublicValue(VAT_STATUS) ? <p>{VAT_STATUS}</p> : null}
 
           <h2>Information Officer</h2>
           <p>
-            The Information Officer for {TRADING_NAME} is the {INFORMATION_OFFICER_TITLE}. Privacy enquiries may be made
-            using the telephone or WhatsApp contact details published on this website
-            {isPublicValue(privacyEmail) ? (
-              <>
-                {" "}
-                or by email at <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a>
-              </>
-            ) : (
-              <> until an official domain email address is published</>
-            )}
-            .
+            The Information Officer for {TRADING_NAME} is the {INFORMATION_OFFICER_TITLE}. Privacy, POPIA and Information
+            Officer enquiries may be made by email at{" "}
+            <a href={MAILTO_PRIVACY}>{PRIVACY_EMAIL}</a>, or using the telephone or WhatsApp contact details published on
+            this website.
           </p>
 
           <h2>Information we collect</h2>
@@ -91,9 +79,9 @@ export default function PrivacyPage() {
 
           <h2>How we share information</h2>
           <p>
-            Form submissions are delivered through our configured form provider when an endpoint is active. WhatsApp
-            conversations use WhatsApp&apos;s own platform when you choose that channel. We do not sell personal
-            information.
+            Enquiry information submitted through the website consultation form is processed through Netlify&apos;s
+            form-handling service for the purpose of receiving and responding to enquiries. WhatsApp conversations use
+            WhatsApp&apos;s own platform when you choose that channel. We do not sell personal information.
           </p>
 
           <h2>Retention</h2>
@@ -125,9 +113,9 @@ export default function PrivacyPage() {
                 </a>
               </li>
             ) : null}
-            {isPublicValue(privacyEmail) ? (
+            {isPublicValue(PRIVACY_EMAIL) ? (
               <li>
-                Email: <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a>
+                Privacy / POPIA email: <a href={MAILTO_PRIVACY}>{PRIVACY_EMAIL}</a>
               </li>
             ) : null}
             {isPublicValue(BUSINESS_HOURS) ? <li>Hours: {BUSINESS_HOURS}</li> : null}

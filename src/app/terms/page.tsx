@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import {
+  ACCOUNTS_EMAIL,
   COMPANY_REGISTRATION_NUMBER,
+  CONTACT_EMAIL,
   isPublicValue,
+  MAILTO_ACCOUNTS,
+  MAILTO_INFO,
   PHONE_DISPLAY,
   PHONE_HREF,
   PHYSICAL_ADDRESS,
   POLICY_EFFECTIVE_DATE,
   REGISTERED_COMPANY_NAME,
   TRADING_NAME,
-  VAT_STATUS,
   WHATSAPP_URL,
 } from "@/config/site";
 
@@ -37,7 +40,6 @@ export default function TermsPage() {
             until a formal engagement is agreed.
           </p>
           {isPublicValue(PHYSICAL_ADDRESS) ? <p>Public business address: {PHYSICAL_ADDRESS}.</p> : null}
-          {isPublicValue(VAT_STATUS) ? <p>{VAT_STATUS}</p> : null}
 
           <h2>No guarantee of outcomes</h2>
           <p>
@@ -55,8 +57,10 @@ export default function TermsPage() {
           <h2>Enquiries and consultations</h2>
           <p>
             Submitting a consultation request does not create a client relationship. We will respond using the contact
-            details you provide. Online form delivery depends on the configured submission provider; if the form is
-            unavailable, WhatsApp or telephone contact may be offered instead.
+            details you provide. Website consultation requests are handled through Netlify Forms; if the form is
+            unavailable, email, WhatsApp or telephone contact may be offered instead. General enquiries may be sent to{" "}
+            <a href={MAILTO_INFO}>{CONTACT_EMAIL}</a>. Accounts and billing matters may be directed to{" "}
+            <a href={MAILTO_ACCOUNTS}>{ACCOUNTS_EMAIL}</a>.
           </p>
 
           <h2>Intellectual property</h2>
@@ -77,6 +81,16 @@ export default function TermsPage() {
             {isPublicValue(PHONE_DISPLAY) ? (
               <li>
                 <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+              </li>
+            ) : null}
+            {isPublicValue(CONTACT_EMAIL) ? (
+              <li>
+                General enquiries: <a href={MAILTO_INFO}>{CONTACT_EMAIL}</a>
+              </li>
+            ) : null}
+            {isPublicValue(ACCOUNTS_EMAIL) ? (
+              <li>
+                Accounts and billing: <a href={MAILTO_ACCOUNTS}>{ACCOUNTS_EMAIL}</a>
               </li>
             ) : null}
             {isPublicValue(WHATSAPP_URL) ? (

@@ -5,6 +5,7 @@ import {
   BRAND,
   BUSINESS_HOURS,
   COMPANY_REGISTRATION_NUMBER,
+  CONTACT_EMAIL,
   INDEXING_ENABLED,
   isPublicValue,
   OFFICIAL_SITE_URL,
@@ -41,6 +42,7 @@ function buildJsonLd() {
     image: `${SITE_URL}${BRAND.officeImage}`,
     logo: `${SITE_URL}${BRAND.logoFullPng}`,
     telephone: PHONE_E164,
+    email: CONTACT_EMAIL,
     areaServed: { "@type": "Country", name: "South Africa" },
     knowsAbout: [
       "Accounting",

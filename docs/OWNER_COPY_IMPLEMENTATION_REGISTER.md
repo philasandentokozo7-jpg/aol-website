@@ -18,7 +18,7 @@ Status values: `pending` → `implemented` → `verified`.
 | `/` `#insights` | `src/components/sections/Insights.tsx` | Fake dates, read times, non-functional “Read” / “View all articles” | Heading exactly; topic titles as non-clickable preview; `id="insights"` retained | implemented | Yes (heading + topic titles) |
 | `/` CTA | `src/components/sections/CTA.tsx` | Different supporting paragraph | Heading, supporting text, buttons exactly | implemented | Yes |
 | `/` footer `#contact` | `src/components/sections/Footer.tsx` | Generic brand blurb; Insights/Pricing links; no legal links | Concise identification; verified contact; legal links; Insights only as topic preview anchor | implemented | Partial (footer ID not fully supplied by owner; verified contacts retained) |
-| Consultation modal | `src/components/interactive/ConsultationModal.tsx` | Form without privacy/marketing consent | Honest Formspree/WhatsApp behaviour + privacy + optional marketing consent | implemented | N/A (UI chrome) |
+| Consultation modal | `src/components/interactive/ConsultationModal.tsx` | Previous third-party form endpoint / unconnected fallback | Netlify Forms (`aol-website-enquiries`) with privacy, optional marketing consent, thank-you redirect | implemented | N/A (UI chrome) |
 | Nav | `src/components/interactive/Header.tsx` | Included Insights as article section | Home/About/Services/Industries/Pricing/Contact + Insights preview anchor | implemented | N/A |
 
 ## Search for obsolete wording (post-implementation)
