@@ -54,7 +54,7 @@ Current defaults:
     * `privacy@aolaccountants.co.za` — privacy / POPIA / Information Officer
     * `office@aolaccountants.co.za` — office contact; primary Google Workspace mailbox (active)
     * Aliases configured in Google Admin: `info@`, `accounts@`, `privacy@` (deliver to `office@`)
-    * Before production launch: send a receive test to all four addresses (blocking).
+    * **Receive test passed** for all four addresses (owner confirmed).
     * Optional env overrides: `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_ACCOUNTS_EMAIL`, `NEXT_PUBLIC_PRIVACY_EMAIL`, `NEXT_PUBLIC_OFFICE_EMAIL`.
 
 12. **Update form delivery and reply-to settings**
@@ -81,7 +81,7 @@ Current defaults:
 
 18. **Update footer and legal contact details**
     * Approved emails are already published in footer / Privacy / Terms.
-    * Confirm address, phone, hours, Information Officer details, and that all four addresses receive mail.
+    * Confirm address, phone, hours, and Information Officer details. Email receive tests for all four addresses are complete.
 
 19. **Add Search Console**
     * Verify the **official** domain only (not the Netlify preview as the final property).

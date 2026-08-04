@@ -43,7 +43,7 @@
 ## Production-launch blockers (legal)
 
 * Owner review/sign-off on the three legal pages
-* Confirm all four approved addresses can receive email (blocking receive test)
+* Email receive tests complete for `info@`, `accounts@`, `privacy@`, and `office@` (owner confirmed)
 * Google Workspace aliases `info@`, `accounts@`, `privacy@` are configured on the `office@` primary mailbox
 * DNS/HTTPS and production indexing flags
 * Indexing remains disabled until launch QA is complete

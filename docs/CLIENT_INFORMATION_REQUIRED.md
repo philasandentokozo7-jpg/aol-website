@@ -5,7 +5,7 @@
 | Item | Why needed | Current status |
 |---|---|---|
 | Official domain DNS + HTTPS for `aolaccountants.co.za` | Canonical URLs, email, Search Console | Configured in code as intended production URL; DNS/HTTPS not completed by this task |
-| Confirm Google Workspace aliases can receive mail | Blocking pre-launch check for all four approved addresses | Primary mailbox `office@aolaccountants.co.za` active; aliases `info@`, `accounts@`, and `privacy@` configured in Google Admin. Send a receive test to each address before production launch |
+| Confirm Google Workspace aliases can receive mail | Blocking pre-launch check for all four approved addresses | **Done.** Primary `office@aolaccountants.co.za` active; aliases `info@`, `accounts@`, `privacy@` configured; owner confirmed all four receive mail |
 | Netlify Forms notification recipient | Delivery of `aol-website-enquiries` submissions | Configure in Netlify dashboard to **`office@aolaccountants.co.za`** after first form-detecting deploy (not a client-side form action) |
 | Final social-media URLs | Footer social row | Hidden until verified URLs supplied |
 | Owner review of Privacy Notice, Cookie Policy, Terms of Use | Production legal readiness | Updated with confirmed public business facts, approved emails, and Netlify Forms wording; pending owner review |
@@ -23,7 +23,7 @@
 * Supporting-document and Xero certification-upon-request statements
 * VAT status is not shown publicly (owner request)
 * Enquiry form uses Netlify Forms (`aol-website-enquiries`)
-* Approved public emails in site config:
+* Approved public emails in site config (all four receive-tested):
   * `info@aolaccountants.co.za` — general enquiries (footer primary)
   * `accounts@aolaccountants.co.za` — accounts and billing (Terms)
   * `privacy@aolaccountants.co.za` — privacy / POPIA / Information Officer

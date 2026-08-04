@@ -76,7 +76,7 @@
 ## Remaining blockers to official production launch
 
 1. Domain purchase + DNS + HTTPS
-2. Confirm all four approved addresses receive email; confirm `info@` / `accounts@` / `privacy@` Workspace aliases (`office@` active and tested)
+2. ~~Email aliases + receive tests~~ — done (`info@`, `accounts@`, `privacy@`, `office@`)
 3. Netlify Forms notifications to `office@aolaccountants.co.za` after first detecting deploy
 4. Legal approval + claim evidence confirmation
 5. Flip env flags and rebuild for indexing

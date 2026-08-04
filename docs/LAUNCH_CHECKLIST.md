@@ -22,7 +22,7 @@
 - [ ] `NEXT_PUBLIC_SITE_URL` / official URL set
 - [ ] `NEXT_PUBLIC_INDEXING_ENABLED=true` only after QA
 - [x] Google Workspace: `office@` primary active; aliases `info@`, `accounts@`, `privacy@` configured
-- [ ] Blocking: send/receive test to all four addresses (`info@`, `accounts@`, `privacy@`, `office@`)
+- [x] Receive test passed for all four addresses (`info@`, `accounts@`, `privacy@`, `office@`)
 - [ ] Netlify Forms notifications set to `office@aolaccountants.co.za` and end-to-end tested (`docs/FORM_TESTING.md`)
 - [ ] SPF / DKIM / DMARC configured
 - [ ] Legal pages approved
