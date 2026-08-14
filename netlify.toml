@@ -1,5 +1,10 @@
-# Staging / preview configuration for Netlify.
-# Official production hosting may also use GitHub Pages — see docs/DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md.
+# Netlify build/publish config.
+#
+# Netlify Forms (`aol-website-enquiries`) only work when this site is published on Netlify.
+# Recommended: use Netlify as the public host (or at least the form-capable publish target).
+# Keep SITE_MODE=staging and INDEXING_ENABLED=false until official launch QA.
+# Official domain: https://aolaccountants.co.za (not aolaccounting.co.za).
+# See docs/POST_DEPLOY_STATUS.md and docs/DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md.
 
 [build]
   command = "npm run build"

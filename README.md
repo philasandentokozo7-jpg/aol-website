@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AOL Accounting Academy SA — Website
 
-## Getting Started
+Public marketing website for **AOL Accounting Academy SA**  
+Intended production domain: **https://aolaccountants.co.za**
 
-First, run the development server:
+## Stack
+
+* Next.js (App Router) static export → `out/`
+* React 19
+* npm
+
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # local development
+npm run lint
+npm run typecheck
+npm run build      # writes static site to out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Preview the build locally:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx serve out -l 3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuration
 
-## Learn More
+* Central config: `src/config/site.ts`
+* Env names only: `.env.example` (never commit real `.env` secrets)
+* Default mode: **staging** (`noindex`) until launch flags are set
+* Enquiry form: **Netlify Forms** (`aol-website-enquiries`) — requires a Netlify-hosted publish for submissions to work
+* Public emails: `info@`, `accounts@`, `privacy@`, `office@` @ `aolaccountants.co.za`
+* Information Officer public wording: “Director of AOL Accounting Academy SA” (no personal name on the site)
 
-To learn more about Next.js, take a look at the following resources:
+## Hosting notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* GitHub Actions deploys `main` to **GitHub Pages** (see `.github/workflows/deploy.yml`)
+* `netlify.toml` configures **Netlify** staging builds with noindex headers
+* **Netlify Forms only process forms on Netlify.** If production is GitHub Pages only, form submissions will not be handled by Netlify Forms.
+* Do **not** use the typo/parking domain `aolaccounting.co.za` as the official site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Docs
 
-## Deploy on Vercel
+* `docs/POST_DEPLOY_STATUS.md` — current deploy / DNS status
+* `docs/LAUNCH_CHECKLIST.md`
+* `docs/DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md`
+* `docs/FORM_TESTING.md`
+* `docs/CLIENT_INFORMATION_REQUIRED.md`
+* `docs/PRODUCTION_READINESS_AUDIT.md`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Privacy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Never publish the director’s personal name, ID number, tax number, or private residential address in this repository or on the public site.

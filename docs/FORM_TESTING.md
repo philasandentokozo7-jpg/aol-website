@@ -4,6 +4,8 @@ Form name: `aol-website-enquiries`
 Processor: Netlify Forms (static export)  
 Success route: `/thank-you/`
 
+> **Before testing:** publish current `main` to Netlify. Older preview builds may still show a different form name or outdated contact email. Do not treat a stale Netlify preview as proof that this form works.
+
 ## Submitted fields
 
 | Field `name` | Type | Required | Notes |

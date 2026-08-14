@@ -1,6 +1,6 @@
 # Changelog — Owner Copy & Production Readiness Remediation
 
-Branch: `completion/aol-owner-copy-production-readiness`
+Branch (merged): `completion/aol-owner-copy-production-readiness` → `main` (`9388c29`)
 
 ## Content
 
@@ -9,7 +9,7 @@ Branch: `completion/aol-owner-copy-production-readiness`
 * Removed public placeholder testimonial
 * Converted Insights to non-clickable topic preview (no fake dates, authors, or Read links)
 * Service name corrected to `Cloud Accounting (Xero)`
-* Accounting & Bookkeeping and Payroll Administration shown title-only pending owner descriptions
+* Accounting & Bookkeeping and Payroll Administration descriptions restored (owner closing sentence + established payroll scope)
 * Added `/services` page with locked descriptions
 * Preserved Pricing packages from prior verified client commit
 
@@ -20,8 +20,10 @@ Branch: `completion/aol-owner-copy-production-readiness`
 * Environment-aware `robots.ts` / `sitemap.ts` / metadata robots
 * Default staging `noindex, nofollow`
 * Removed static `public/robots.txt`, `public/sitemap.xml`, premature `public/CNAME`
-* GitHub Pages workflow reads staging/production vars; writes CNAME only in production mode
+* GitHub Pages workflow always removes `out/CNAME`; custom domain is host-dashboard only (never publish the parking typo domain)
 * Added `netlify.toml` for staging headers and build env
+* Migrated enquiries from Formspree to Netlify Forms (`aol-website-enquiries`)
+* Published approved `@aolaccountants.co.za` emails
 
 ## UX / a11y / forms
 
@@ -54,14 +56,20 @@ Branch: `completion/aol-owner-copy-production-readiness`
 * Secret scan: no committed keys/endpoints
 * `npm audit --omit=dev`: residual transitive highs in postcss/sharp via Next (documented)
 
-## Documentation added
+## Documentation added / updated
 
 * `OWNER_COPY_IMPLEMENTATION_REGISTER.md`
 * `PRODUCTION_READINESS_AUDIT.md`
 * `CLIENT_INFORMATION_REQUIRED.md`
 * `ACCREDITATION_AND_CLAIMS_REGISTER.md`
 * `DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md`
+* `FORM_TESTING.md`
+* `POST_DEPLOY_STATUS.md`
 * `ANALYTICS_EVENT_PLAN.md`
 * `LEGAL_CONTENT_APPROVAL_REQUIRED.md`
 * `LAUNCH_CHECKLIST.md`
 * `CHANGELOG_COMPLETION_REMEDIATION.md`
+
+## Post-merge deploy note
+
+GitHub Pages workflow succeeded after merge, but public DNS/custom-domain settings still need owner action before `aolaccountants.co.za` serves this site. See `docs/POST_DEPLOY_STATUS.md`.

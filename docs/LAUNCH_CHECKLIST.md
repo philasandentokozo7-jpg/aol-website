@@ -13,17 +13,26 @@
 - [x] Staging noindex active by default
 - [x] Central env configuration present
 - [x] Missing client facts documented
+- [x] Code merged to `main` and GitHub Pages workflow succeeded
+- [x] Google Workspace: `office@` primary active; aliases `info@`, `accounts@`, `privacy@` configured
+- [x] Receive test passed for all four addresses (`info@`, `accounts@`, `privacy@`, `office@`)
+
+## Before the public site is usable
+
+- [ ] Remove wrong GitHub Pages custom domain (`www.aolaccounting.co.za`)
+- [ ] Choose primary host (Netlify recommended while using Netlify Forms)
+- [ ] Point `aolaccountants.co.za` / `www` web DNS at the chosen host (not parking)
+- [ ] Redeploy Netlify from current `main` (if using Netlify)
+- [ ] Confirm live form name is `aol-website-enquiries`
+- [ ] Netlify Forms notifications set to `office@aolaccountants.co.za` and end-to-end tested (`docs/FORM_TESTING.md`)
+- [ ] HTTPS confirmed on primary domain
+- [ ] Confirm staging/preview remains noindex until launch QA
 
 ## Before enabling production indexing
 
-- [ ] Official domain purchased and DNS connected
-- [ ] HTTPS confirmed on primary domain
 - [ ] `NEXT_PUBLIC_SITE_MODE=production`
-- [ ] `NEXT_PUBLIC_SITE_URL` / official URL set
+- [ ] `NEXT_PUBLIC_SITE_URL` / official URL set to `https://aolaccountants.co.za`
 - [ ] `NEXT_PUBLIC_INDEXING_ENABLED=true` only after QA
-- [x] Google Workspace: `office@` primary active; aliases `info@`, `accounts@`, `privacy@` configured
-- [x] Receive test passed for all four addresses (`info@`, `accounts@`, `privacy@`, `office@`)
-- [ ] Netlify Forms notifications set to `office@aolaccountants.co.za` and end-to-end tested (`docs/FORM_TESTING.md`)
 - [ ] SPF / DKIM / DMARC configured
 - [ ] Legal pages approved
 - [ ] Claim evidence confirmed or accepted as business risk by owner

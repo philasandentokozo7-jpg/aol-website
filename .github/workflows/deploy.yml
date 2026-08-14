@@ -41,12 +41,11 @@ jobs:
         run: npm run build
 
       - name: Ensure GitHub Pages files exist in output
-        env:
-          SITE_MODE: ${{ vars.NEXT_PUBLIC_SITE_MODE || 'staging' }}
         run: |
           touch out/.nojekyll
-          # Do not publish a CNAME from staging builds. Production host confirmation
-          # and custom-domain setup remain owner/hosting tasks.
+          # Never publish a repo CNAME from CI. Custom domains are configured only in the
+          # host dashboard after DNS for aolaccountants.co.za points at the chosen host.
+          # Do not use the parking/typo domain aolaccounting.co.za.
           rm -f out/CNAME
 
       - name: Configure Pages

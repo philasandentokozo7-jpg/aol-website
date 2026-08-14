@@ -4,7 +4,7 @@
 
 | Item | Why needed | Current status |
 |---|---|---|
-| Official domain DNS + HTTPS for `aolaccountants.co.za` | Canonical URLs, email, Search Console | Configured in code as intended production URL; DNS/HTTPS not completed by this task |
+| Official domain DNS + HTTPS for `aolaccountants.co.za` | Canonical URLs, Search Console, public site | Domain registered; Workspace mail works; **web DNS still parking** and wrong Pages custom domain (`www.aolaccounting.co.za`) must be fixed — see `docs/POST_DEPLOY_STATUS.md` |
 | Confirm Google Workspace aliases can receive mail | Blocking pre-launch check for all four approved addresses | **Done.** Primary `office@aolaccountants.co.za` active; aliases `info@`, `accounts@`, `privacy@` configured; owner confirmed all four receive mail |
 | Netlify Forms notification recipient | Delivery of `aol-website-enquiries` submissions | Configure in Netlify dashboard to **`office@aolaccountants.co.za`** after first form-detecting deploy (not a client-side form action) |
 | Final social-media URLs | Footer social row | Hidden until verified URLs supplied |

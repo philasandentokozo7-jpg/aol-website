@@ -9,7 +9,7 @@ Status values: `pending` → `implemented` → `verified`.
 | `/` `#about` | `src/components/sections/About.tsx` | Two merged paragraphs; invented point cards (“Compliance-first”, etc.); “Qualified SA professionals” badge | Heading + 3 paragraphs exactly | implemented | Yes |
 | `/` `#why` | `src/components/sections/WhyChoose.tsx` | Near-match titles/descriptions with synonym/comma differences; title sentence case differed | Heading, intro, 4 feature titles + descriptions exactly | implemented | Yes |
 | `/` `#services` | `src/components/sections/Services.tsx` | Title-only for Accounting & Bookkeeping and Payroll | Full descriptions restored: bookkeeping ends with owner-supplied closing sentence; payroll uses established PAYE/UIF/SDL scope | implemented | Closing sentence verbatim; payroll body professional completion of established scope |
-| `/services` | `src/app/services/page.tsx` | Did not exist | Same service names + locked descriptions; title-only for the two missing descriptions | implemented | Yes |
+| `/services` | `src/app/services/page.tsx` | Did not exist | Same service names + locked/full descriptions | implemented | Yes |
 | `/` `#industries` | `src/components/sections/Industries.tsx` | “SMEs” short label; title sentence case differed | Heading, intro, 9 industry labels exactly | implemented | Yes |
 | `/` `#why-trust` | `src/components/sections/WhyTrust.tsx` | Near-match; Client-Focused / Excellence wording differed | Heading, intro, 4 trust points exactly; no fake counters | implemented | Yes |
 | `/` `#pricing` | `src/components/sections/Pricing.tsx` | Existing verified package pricing from prior client commit | Retained (not in owner public-copy pack; treated as verified repo pricing) | retained | N/A (not in owner pack) |
@@ -37,4 +37,4 @@ Fragments intentionally removed or replaced site-wide:
 ## Notes
 
 - Owner editorial instructions (structure suggestions, Xero brand strategy notes, achievement-counter suggestions) were applied to layout only and were **not** published as customer-facing copy.
-- Accounting & Bookkeeping and Payroll Administration: no new owner descriptions; prior short blurbs treated as generic — title-only presentation; gap recorded in `CLIENT_INFORMATION_REQUIRED.md`.
+- Accounting & Bookkeeping and Payroll Administration: full public descriptions are implemented (bookkeeping closing sentence owner-supplied; payroll body from established PAYE/UIF/SDL scope). Confirm if a longer owner-authored payroll paragraph exists — gap noted in `CLIENT_INFORMATION_REQUIRED.md`.

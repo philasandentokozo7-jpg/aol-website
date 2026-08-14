@@ -4,17 +4,26 @@
 
 | Item | Value |
 |---|---|
-| Framework | Next.js 16.2.10 (App Router), React 19 |
+| Framework | Next.js 16.2.12 (App Router), React 19 |
 | Output | Static export (`output: "export"`) |
 | Package manager | npm (`package-lock.json`) |
 | Dev command | `npm run dev` |
 | Build command | `npm run build` |
 | Lint | `npm run lint` |
 | Typecheck | `npm run typecheck` |
-| Deployment | GitHub Pages workflow + Netlify staging config (`netlify.toml`) |
+| Deployment | GitHub Pages workflow on `main` + Netlify config (`netlify.toml`) |
 | Form provider | Netlify Forms (`aol-website-enquiries`); WhatsApp/phone remain alternative contact options |
 | Analytics | Not configured |
-| Preview inspected | https://aol-accounting-academy.netlify.app/ (pre-remediation content matched repo) |
+| Official domain (intended) | `https://aolaccountants.co.za` |
+| Wrong/parking domain (do not use) | `aolaccounting.co.za` / `www.aolaccounting.co.za` |
+
+## Current deploy reality
+
+* Code on `main` includes owner copy, Netlify Forms, and approved emails.
+* GitHub Pages Actions deploy from `main` **succeeded**.
+* Public custom domain still points at a **parking page**; GitHub Pages custom domain setting still uses `www.aolaccounting.co.za`.
+* Netlify preview URL may still serve a **stale** older build — do not treat it as current until redeployed from `main`.
+* See `docs/POST_DEPLOY_STATUS.md`.
 
 ## Routes
 
@@ -42,6 +51,7 @@
 * Honeypot (`bot-field` + `netlify-honeypot`): yes
 * Double-submit guard via `sending` state: yes
 * Static-export detection form (`NetlifyFormsDetector`): yes
+* **Hosting requirement:** Netlify Forms only process submissions on a Netlify publish
 
 ## Accessibility (implemented)
 
@@ -75,8 +85,9 @@
 
 ## Remaining blockers to official production launch
 
-1. Domain purchase + DNS + HTTPS
-2. ~~Email aliases + receive tests~~ — done (`info@`, `accounts@`, `privacy@`, `office@`)
-3. Netlify Forms notifications to `office@aolaccountants.co.za` after first detecting deploy
-4. Legal approval + claim evidence confirmation
-5. Flip env flags and rebuild for indexing
+1. Remove wrong Pages custom domain + fix web DNS for `aolaccountants.co.za` (currently parking)
+2. Choose primary host (Netlify recommended while keeping Netlify Forms) and redeploy current `main`
+3. Netlify Forms notifications to `office@aolaccountants.co.za` + E2E form test
+4. SPF / DKIM / DMARC
+5. Legal approval + claim evidence confirmation
+6. Flip env flags and rebuild for indexing only after QA
