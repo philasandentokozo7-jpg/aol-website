@@ -94,7 +94,7 @@ export function Pricing() {
           {PLANS.map((p, i) => (
             <Reveal key={p.tier} delay={String(i + 1)} style={{ display: "flex", minWidth: 0 }}>
               <div style={{ flex: 1, display: "flex", minWidth: 0 }}>
-                <PricingCard {...p} period="per month" cta={`Choose ${p.tier}`} ctaHref="#contact" />
+                <PricingCard {...p} period="per month" cta={`Choose ${p.tier}`} ctaHref="/#contact" />
               </div>
             </Reveal>
           ))}
