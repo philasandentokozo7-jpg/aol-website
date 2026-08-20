@@ -2,19 +2,17 @@
 #
 # Netlify Forms (`aol-website-enquiries`) only work when this site is published on Netlify.
 # Recommended: use Netlify as the public host (or at least the form-capable publish target).
-# Keep SITE_MODE=staging and INDEXING_ENABLED=false until official launch QA.
 # Official domain: https://aolaccountants.co.za (not aolaccounting.co.za).
 # See docs/POST_DEPLOY_STATUS.md and docs/DOMAIN_AND_EMAIL_LAUNCH_INSTRUCTIONS.md.
+#
+# IMPORTANT: do not hard-code NEXT_PUBLIC_SITE_MODE or NEXT_PUBLIC_INDEXING_ENABLED here.
+# Values in netlify.toml override matching Netlify dashboard variables. The application
+# already defaults safely to staging/noindex in src/config/site.ts; production launch
+# flags must remain controllable from the Netlify environment settings.
 
 [build]
   command = "npm run build"
   publish = "out"
-
-[build.environment]
-  NEXT_PUBLIC_SITE_MODE = "staging"
-  NEXT_PUBLIC_INDEXING_ENABLED = "false"
-  NEXT_PUBLIC_OFFICIAL_SITE_URL = "https://aolaccountants.co.za"
-  NEXT_PUBLIC_PREVIEW_SITE_URL = "https://aol-accounting-academy.netlify.app"
 
 [[headers]]
   for = "/*"
@@ -23,7 +21,11 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    X-Robots-Tag = "noindex, nofollow"
+
+# Do not set a global X-Robots-Tag here. Netlify custom headers are global across
+# deploy contexts, so a global noindex header would also block the production site.
+# Staging safety is enforced by Next.js metadata + robots.ts unless production and
+# indexing are both explicitly enabled.
 
 [[headers]]
   for = "/assets/*"
