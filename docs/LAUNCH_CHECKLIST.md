@@ -12,6 +12,7 @@
 - [x] 404 page exists
 - [x] Staging noindex active by default
 - [x] Central env configuration present
+- [x] Netlify config no longer hard-codes staging/indexing flags or a global noindex header
 - [x] Missing client facts documented
 - [x] Code merged to `main` and GitHub Pages workflow succeeded
 - [x] Google Workspace: `office@` primary active; aliases `info@`, `accounts@`, `privacy@` configured
@@ -20,20 +21,25 @@
 ## Before the public site is usable
 
 - [ ] Remove wrong GitHub Pages custom domain (`www.aolaccounting.co.za`)
-- [ ] Choose primary host (Netlify recommended while using Netlify Forms)
-- [ ] Point `aolaccountants.co.za` / `www` web DNS at the chosen host (not parking)
-- [ ] Redeploy Netlify from current `main` (if using Netlify)
+- [ ] Use Netlify as primary host while the current Netlify Forms implementation is retained
+- [ ] Redeploy Netlify from current `main`
+- [ ] Confirm Netlify preview shows current copy and routes (`/privacy`, `/services`, `/terms`, `/thank-you`)
 - [ ] Confirm live form name is `aol-website-enquiries`
+- [ ] Add `aolaccountants.co.za` and `www.aolaccountants.co.za` in Netlify and select the primary domain
+- [ ] Replace the Domains.co.za parking web DNS with the exact Netlify records; preserve Google Workspace mail records
 - [ ] Netlify Forms notifications set to `office@aolaccountants.co.za` and end-to-end tested (`docs/FORM_TESTING.md`)
-- [ ] HTTPS confirmed on primary domain
+- [ ] HTTPS confirmed on primary domain and alternate host redirects correctly
 - [ ] Confirm staging/preview remains noindex until launch QA
 
 ## Before enabling production indexing
 
-- [ ] `NEXT_PUBLIC_SITE_MODE=production`
-- [ ] `NEXT_PUBLIC_SITE_URL` / official URL set to `https://aolaccountants.co.za`
+- [ ] `NEXT_PUBLIC_SITE_MODE=production` set in the production deployment environment
+- [ ] `NEXT_PUBLIC_SITE_URL=https://aolaccountants.co.za`
+- [ ] `NEXT_PUBLIC_OFFICIAL_SITE_URL=https://aolaccountants.co.za`
 - [ ] `NEXT_PUBLIC_INDEXING_ENABLED=true` only after QA
-- [ ] SPF / DKIM / DMARC configured
+- [ ] SPF published for Google Workspace
+- [ ] DKIM enabled in Google Workspace and exact selector published in DNS
+- [ ] DMARC published (monitoring policy acceptable for initial launch if appropriate)
 - [ ] Legal pages approved
 - [ ] Claim evidence confirmed or accepted as business risk by owner
 - [ ] Search Console on official domain only
