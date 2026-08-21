@@ -15,6 +15,14 @@ export function Hero() {
             Accountants in Durban for Tax, Bookkeeping &amp; Business Advisory
           </h1>
           <p className="hero__tagline">Professional Accounting. Strategic Business Advice. Sustainable Growth.</p>
+          <div className="hero__cta">
+            <BookButton size="lg" iconRight="arrow-right">
+              Book a Free Consultation
+            </BookButton>
+            <Button size="lg" variant="outline" href="#services">
+              Explore Our Services
+            </Button>
+          </div>
           <div className="hero__leads">
             <p>
               AOL Accounting Academy SA is a modern accounting and business advisory firm that collaborates with a
@@ -33,14 +41,6 @@ export function Hero() {
               industry experience to deliver reliable, tailored, and results-driven financial solutions that help
               businesses remain compliant, make informed decisions, and grow with confidence.
             </p>
-          </div>
-          <div className="hero__cta">
-            <BookButton size="lg" iconRight="arrow-right">
-              Book a Free Consultation
-            </BookButton>
-            <Button size="lg" variant="outline" href="#services">
-              Explore Our Services
-            </Button>
           </div>
           <ul className="hero__trust" aria-label="Trust signals">
             <li>

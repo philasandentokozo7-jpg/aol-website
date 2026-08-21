@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/interactive/Header";
 import { ConsultationModal } from "@/components/interactive/ConsultationModal";
+import { MobileActionBar } from "@/components/interactive/MobileActionBar";
 import { NetlifyFormsDetector } from "@/components/interactive/NetlifyFormsDetector";
 import { REVEAL_SCRIPT } from "@/components/interactive/Reveal";
 import { Hero } from "@/components/sections/Hero";
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="site">
+    <div className="site site--with-mab">
       <Header />
       <main id="main">
         <Hero />
@@ -51,6 +52,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <MobileActionBar />
       <NetlifyFormsDetector />
       <ConsultationModal />
       <AnchorFocus />

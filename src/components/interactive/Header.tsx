@@ -106,6 +106,9 @@ export function Header() {
             <Button className="hdr__cta" size="sm" iconRight="arrow-right" onClick={onBook}>
               Book a Free Consultation
             </Button>
+            <Button className="hdr__cta-mobile" size="sm" onClick={onBook}>
+              Book
+            </Button>
             <button
               ref={burgerRef}
               className="hdr__burger"
