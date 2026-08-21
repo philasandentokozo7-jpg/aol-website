@@ -952,20 +952,23 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right))
     max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
   width: 100%; max-width: 100vw; box-sizing: border-box; overflow: hidden;
-  pointer-events: none;
+  pointer-events: none; visibility: hidden;
 }
-.modal__scrim { position: absolute; inset: 0; background: rgba(6,16,31,.6); backdrop-filter: blur(3px);
-  opacity: 0; transition: opacity var(--dur) var(--ease-out); }
+.modal__scrim {
+  position: absolute; inset: 0; background: rgba(6,16,31,.55);
+  opacity: 0; transition: opacity 140ms var(--ease-out);
+}
 .modal__card {
   position: relative; z-index: 1; width: min(560px, 100%); max-width: 100%;
   max-height: min(90vh, calc(100dvh - 1.5rem)); overflow-x: hidden; overflow-y: auto;
   overscroll-behavior: contain; background: #fff; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);
   padding: clamp(1.5rem, 3vw, 2.25rem); padding-top: clamp(2.75rem, 4vw, 3rem);
   box-sizing: border-box; min-width: 0;
-  transform: translateY(12px) scale(.98); opacity: 0;
-  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
+  transform: translateY(10px) scale(.985); opacity: 0;
+  transition: transform 160ms var(--ease-out), opacity 140ms var(--ease-out);
+  will-change: transform, opacity;
 }
-.modal.open { pointer-events: auto; }
+.modal.open { pointer-events: auto; visibility: visible; }
 .modal.open .modal__scrim { opacity: 1; }
 .modal.open .modal__card { transform: none; opacity: 1; }
 .modal__close { position: absolute; top: .85rem; right: .85rem; width: 40px; height: 40px; border-radius: 10px;
@@ -982,6 +985,14 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
 .modal__success { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 1rem 0; }
 .modal__success .ok { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px;
   border-radius: 50%; background: var(--success-bg); color: var(--success); }
+
+/* Hard lock while consultation modal is open — cleared on close/back/pageshow */
+body.aol-modal-open {
+  overflow: hidden !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal__scrim, .modal__card { transition: none; }
+}
 
 /* ============================================================
    Responsive — tablet & up
