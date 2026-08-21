@@ -22,7 +22,7 @@ export function CTA() {
               <BookButton size="lg" iconRight="arrow-right">
                 Book a Free Consultation
               </BookButton>
-              <Button size="lg" variant="outline" onDark href="#contact">
+              <Button size="lg" variant="outline" onDark href="/contact/">
                 Contact Our Team
               </Button>
             </div>

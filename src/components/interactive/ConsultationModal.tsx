@@ -166,7 +166,7 @@ export function ConsultationModal() {
               <p style={{ color: "var(--text-muted)", fontSize: "var(--text-base)" }}>
                 We collect this information to respond to your consultation request for {TRADING_NAME}. Required fields
                 are marked with an asterisk. See our{" "}
-                <a href="/privacy" style={{ color: "var(--navy-900)", fontWeight: 600 }}>
+                <a href="/privacy/" style={{ color: "var(--navy-900)", fontWeight: 600 }}>
                   Privacy Notice
                 </a>
                 .

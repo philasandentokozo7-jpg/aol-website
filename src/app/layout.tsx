@@ -14,6 +14,7 @@ import {
   SITE_URL,
   TRADING_NAME,
 } from "@/config/site";
+import { canonicalOrigin, canonicalUrl } from "@/lib/seo";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -31,19 +32,24 @@ const spectral = Spectral({
 });
 
 function buildJsonLd() {
+  const origin = canonicalOrigin();
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
+    "@id": `${origin}/#business`,
     name: TRADING_NAME,
     legalName: TRADING_NAME,
     description:
-      "Modern accounting and business advisory firm providing accounting, taxation, payroll, cloud accounting, and business advisory services for South African businesses.",
-    url: SITE_URL,
-    image: `${SITE_URL}${BRAND.officeImage}`,
-    logo: `${SITE_URL}${BRAND.logoFullPng}`,
+      "Accounting, taxation, payroll, cloud accounting and business advisory services for Durban and South African businesses.",
+    url: `${origin}/`,
+    image: `${origin}${BRAND.officeImage}`,
+    logo: `${origin}${BRAND.logoFullPng}`,
     telephone: PHONE_E164,
     email: CONTACT_EMAIL,
-    areaServed: { "@type": "Country", name: "South Africa" },
+    areaServed: [
+      { "@type": "City", name: "Durban" },
+      { "@type": "Country", name: "South Africa" },
+    ],
     knowsAbout: [
       "Accounting",
       "Bookkeeping",
@@ -88,8 +94,8 @@ function buildJsonLd() {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  alternates: { canonical: INDEXING_ENABLED ? `${OFFICIAL_SITE_URL}/` : `${SITE_URL}/` },
+  metadataBase: new URL(INDEXING_ENABLED ? OFFICIAL_SITE_URL : SITE_URL),
+  alternates: { canonical: canonicalUrl("/") },
   title: {
     default: `${TRADING_NAME} — Accounting, Tax & Advisory`,
     template: `%s | ${TRADING_NAME}`,
@@ -102,7 +108,7 @@ export const metadata: Metadata = {
     : { index: false, follow: false, googleBot: { index: false, follow: false } },
   openGraph: {
     type: "website",
-    url: SITE_URL,
+    url: canonicalUrl("/"),
     siteName: TRADING_NAME,
     title: `${TRADING_NAME} — Accounting, Tax & Advisory`,
     description: "Professional Accounting. Strategic Business Advice. Sustainable Growth.",

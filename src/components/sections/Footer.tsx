@@ -16,35 +16,20 @@ import {
   TRADING_NAME,
   WHATSAPP_URL,
 } from "@/config/site";
-
-const F_QUICK: Array<[string, string]> = [
-  ["Home", "/#home"],
-  ["About", "/#about"],
-  ["Services", "/services"],
-  ["Industries", "/#industries"],
-  ["Insights", "/#insights"],
-  ["Contact", "/#contact"],
-];
-
-const F_SERVICES: Array<[string, string]> = [
-  ["Accounting & Bookkeeping", "/services"],
-  ["Payroll Administration", "/services"],
-  ["Taxation Services", "/services"],
-  ["Business Advisory", "/services"],
-  ["Cloud Accounting (Xero)", "/services"],
-  ["CIPC Services", "/services"],
-];
+import { SERVICES, servicePath } from "@/content/services";
+import { PRIMARY_NAV } from "@/lib/seo";
 
 export function Footer() {
   const social = publicSocialLinks();
   const year = new Date().getFullYear();
+  const footerServices = SERVICES.slice(0, 6);
 
   return (
-    <footer id="contact" className="ftr">
+    <footer className="ftr">
       <div className="container">
         <div className="ftr__grid">
           <div className="ftr__brand">
-            <Link className="chip" href="/#home" aria-label={`${TRADING_NAME} — home`}>
+            <Link className="chip" href="/" aria-label={`${TRADING_NAME} — home`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={BRAND.logoFull} alt={TRADING_NAME} width={57} height={40} loading="lazy" />
             </Link>
@@ -70,7 +55,7 @@ export function Footer() {
           <nav className="ftr__col" aria-label="Footer quick links">
             <h3>Quick Links</h3>
             <ul>
-              {F_QUICK.map(([label, href]) => (
+              {PRIMARY_NAV.map(([label, href]) => (
                 <li key={label}>
                   <Link href={href}>{label}</Link>
                 </li>
@@ -81,11 +66,14 @@ export function Footer() {
           <nav className="ftr__col" aria-label="Footer services">
             <h3>Services</h3>
             <ul>
-              {F_SERVICES.map(([label, href]) => (
-                <li key={label}>
-                  <Link href={href}>{label}</Link>
+              {footerServices.map((service) => (
+                <li key={service.slug}>
+                  <Link href={servicePath(service.slug)}>{service.title}</Link>
                 </li>
               ))}
+              <li>
+                <Link href="/services/">All services</Link>
+              </li>
             </ul>
           </nav>
 
@@ -138,6 +126,9 @@ export function Footer() {
                   <span>{BUSINESS_HOURS}</span>
                 </li>
               ) : null}
+              <li>
+                <Link href="/contact/">Contact page</Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -147,9 +138,9 @@ export function Footer() {
             © {year} {TRADING_NAME}. All rights reserved.
           </span>
           <span className="links">
-            <Link href="/privacy">Privacy Notice</Link>
-            <Link href="/cookies">Cookie Policy</Link>
-            <Link href="/terms">Terms of Use</Link>
+            <Link href="/privacy/">Privacy Notice</Link>
+            <Link href="/cookies/">Cookie Policy</Link>
+            <Link href="/terms/">Terms of Use</Link>
           </span>
         </div>
       </div>

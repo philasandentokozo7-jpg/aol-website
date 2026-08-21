@@ -12,8 +12,9 @@ export function Hero() {
         <Reveal className="hero__copy" immediate>
           <p className="hero__brand">{BRAND.name}</p>
           <h1 id="hero-heading" className="hero__title">
-            Professional Accounting. Strategic Business Advice. Sustainable Growth.
+            Accountants in Durban for Tax, Bookkeeping &amp; Business Advisory
           </h1>
+          <p className="hero__tagline">Professional Accounting. Strategic Business Advice. Sustainable Growth.</p>
           <div className="hero__leads">
             <p>
               AOL Accounting Academy SA is a modern accounting and business advisory firm that collaborates with a

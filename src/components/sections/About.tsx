@@ -1,5 +1,6 @@
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../interactive/Reveal";
+import { Button } from "../ui/Button";
 import { BRAND } from "@/config/site";
 
 export function About() {
@@ -38,6 +39,11 @@ export function About() {
               personalised support tailored to every client&apos;s goals.
             </p>
             <p>We are committed to building long-term relationships founded on professionalism, integrity, and measurable value.</p>
+          </div>
+          <div style={{ marginTop: "1.25rem" }}>
+            <Button href="/about/" variant="outline" iconRight="arrow-right">
+              About AOL
+            </Button>
           </div>
         </Reveal>
       </div>

@@ -10,10 +10,10 @@ export default function NotFound() {
           <p>The page you requested is unavailable. You can return home or explore our services.</p>
           <div style={{ display: "flex", gap: "0.8rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem" }}>
             <Button href="/">Home</Button>
-            <Button href="/services" variant="outline">
+            <Button href="/services/" variant="outline">
               Services
             </Button>
-            <Button href="/#contact" variant="ghost">
+            <Button href="/contact/" variant="ghost">
               Contact
             </Button>
           </div>

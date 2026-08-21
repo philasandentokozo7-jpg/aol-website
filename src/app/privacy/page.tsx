@@ -15,8 +15,10 @@ import {
   TRADING_NAME,
   WHATSAPP_URL,
 } from "@/config/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonicalUrl("/privacy/") },
   title: "Privacy Notice",
   description: `Privacy Notice for ${TRADING_NAME}.`,
 };

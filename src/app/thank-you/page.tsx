@@ -29,7 +29,7 @@ export default function ThankYouPage() {
           </p>
           <div style={{ display: "flex", gap: "0.8rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem" }}>
             <Button href="/">Back to home</Button>
-            <Button href="/#contact" variant="outline">
+            <Button href="/contact/" variant="outline">
               Contact
             </Button>
           </div>
