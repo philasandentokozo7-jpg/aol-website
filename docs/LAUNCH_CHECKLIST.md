@@ -15,7 +15,7 @@
 - [x] Notification recipient set to `office@aolaccountants.co.za`
 - [x] Google Workspace aliases receive mail (`info@`, `accounts@`, `privacy@`, `office@`)
 
-## SEO architecture (this branch)
+## SEO architecture
 
 - [x] Commercial homepage H1 + brand tagline
 - [x] Dedicated `/about/`, `/contact/`, `/services/`, `/industries/`, `/pricing/`, `/insights/`
@@ -24,19 +24,24 @@
 - [x] Sitemap excludes `/thank-you/`
 - [x] Environment-controlled robots retained
 - [x] Consultation modal overflow hardened
-- [ ] Branch QA complete and merged to `main`
+- [x] Phone-first mobile polish shipped
+- [x] Branch merged to `main` and Netlify production redeployed
 
-## Before enabling production indexing
+## Production indexing (enabled 2026-08-21)
+
+- [x] `NEXT_PUBLIC_SITE_MODE=production`
+- [x] `NEXT_PUBLIC_SITE_URL=https://aolaccountants.co.za`
+- [x] `NEXT_PUBLIC_OFFICIAL_SITE_URL=https://aolaccountants.co.za`
+- [x] `NEXT_PUBLIC_INDEXING_ENABLED=true`
+- [x] Live `robots.txt` allows crawling and declares official sitemap
+
+## Still open
 
 - [ ] End-to-end form submission confirmed on live Netlify
-- [ ] `NEXT_PUBLIC_SITE_MODE=production`
-- [ ] `NEXT_PUBLIC_SITE_URL=https://aolaccountants.co.za`
-- [ ] `NEXT_PUBLIC_OFFICIAL_SITE_URL=https://aolaccountants.co.za`
-- [ ] `NEXT_PUBLIC_INDEXING_ENABLED=true` only after QA
 - [ ] SPF / DKIM / DMARC configured
 - [ ] Legal pages approved
 - [ ] Claim evidence confirmed or accepted as business risk by owner
 - [ ] Search Console on official domain only + sitemap submitted
-- [ ] Final visual QA at 320–1440px widths
+- [ ] Final visual QA at 320–1440px widths on live
 - [ ] Phone / WhatsApp / address reconfirmed
 - [ ] No placeholder or blank social links visible

@@ -1,6 +1,6 @@
 # Post-deploy status
 
-Last sorted: 2026-08-21 (SEO architecture branch)
+Last sorted: 2026-08-21 (production indexing enabled)
 
 ## Production infrastructure (confirmed)
 
@@ -14,25 +14,20 @@ Last sorted: 2026-08-21 (SEO architecture branch)
 | Netlify Forms | Detects `aol-website-enquiries` |
 | Form notifications | `office@aolaccountants.co.za` |
 | Legacy dashboard form `consultation` | Historical only — not used by current frontend |
-| Safe application default | `SITE_MODE=staging`, `INDEXING_ENABLED=false` until launch QA |
+| Production env | `SITE_MODE=production`, `INDEXING_ENABLED=true`, official `SITE_URL` |
+| Live `robots.txt` | `Allow: /` + `Sitemap: https://aolaccountants.co.za/sitemap.xml` |
 | Typo domain `aolaccounting.co.za` | Obsolete — never reintroduce as public/config host |
 
-## SEO architecture branch (`seo-architecture-final`)
+## Shipped on main
 
-Adds standalone About, Contact, Industries, Pricing, Insights and ten service landing pages; rewires nav/footer; fixes homepage H1/commercial metadata; excludes `/thank-you/` from sitemap; preserves Netlify Forms identity `aol-website-enquiries`.
+Standalone About, Contact, Industries, Pricing, Insights and ten service landing pages; phone-first mobile polish; commercial homepage H1; sitemap excludes `/thank-you/`; Netlify Forms identity `aol-website-enquiries`.
 
-## Still required after this PR merges
+## Still recommended
 
 1. End-to-end real form submission confirmation on production Netlify (if not already completed)
-2. Merge `seo-architecture-final` → `main` after QA
-3. Production indexing env switch after final QA:
-   - `NEXT_PUBLIC_SITE_MODE=production`
-   - `NEXT_PUBLIC_INDEXING_ENABLED=true`
-   - `NEXT_PUBLIC_SITE_URL=https://aolaccountants.co.za`
-   - `NEXT_PUBLIC_OFFICIAL_SITE_URL=https://aolaccountants.co.za`
-4. Search Console verification + sitemap submission on the official domain only
-5. SPF / DKIM / DMARC if still incomplete
-6. Final visual QA on live after merge
+2. Search Console verification + sitemap submission on the official domain only
+3. SPF / DKIM / DMARC if still incomplete
+4. Spot-check live visual QA on phone widths after this deploy
 
 ## Do not
 
