@@ -20,7 +20,7 @@ const DESCRIPTION =
   "Transparent monthly bookkeeping retainers from AOL Accounting Academy SA, with optional specialist add-ons for payroll, tax, Xero and advisory support.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: canonicalUrl("/pricing/") },
   openGraph: { title: TITLE, description: DESCRIPTION, url: canonicalUrl("/pricing/") },
