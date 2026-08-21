@@ -13,7 +13,7 @@ const DESCRIPTION =
   "Planned insight topics from AOL Accounting Academy SA on cash flow, tax season preparation, Xero cloud accounting and financial tips for growing businesses.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: canonicalUrl("/insights/") },
   openGraph: { title: TITLE, description: DESCRIPTION, url: canonicalUrl("/insights/") },
