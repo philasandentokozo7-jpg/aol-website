@@ -14,7 +14,7 @@ const DESCRIPTION =
   "Learn how AOL Accounting Academy SA supports Durban and South African businesses with accounting, tax, payroll, cloud accounting and advisory services through a collaborative professional network.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: canonicalUrl("/about/") },
   openGraph: { title: TITLE, description: DESCRIPTION, url: canonicalUrl("/about/") },
