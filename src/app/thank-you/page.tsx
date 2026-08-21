@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { Button } from "@/components/ui/Button";
 import { PHONE_DISPLAY, PHONE_HREF, TRADING_NAME, WHATSAPP_URL } from "@/config/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Thank you",
   robots: { index: false, follow: false },
   description: `Thank you for contacting ${TRADING_NAME}.`,
+  alternates: { canonical: canonicalUrl("/thank-you/") },
 };
 
 export default function ThankYouPage() {
