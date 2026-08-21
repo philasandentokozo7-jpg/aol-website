@@ -49,16 +49,16 @@ export default function PricingPage() {
           </Reveal>
 
           <div className="pricing__grid" style={{ marginTop: "2rem" }}>
-            {PRICING_PLANS.map((p, i) => (
-              <Reveal key={p.tier} delay={String(i + 1)} style={{ display: "flex", minWidth: 0 }}>
+            {PRICING_PLANS.map((p) => (
+              <div key={p.tier} style={{ display: "flex", minWidth: 0 }}>
                 <div style={{ flex: 1, display: "flex", minWidth: 0 }}>
                   <PricingCard {...p} period="per month" cta={`Choose ${p.tier}`} ctaHref="/contact/" />
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
 
-          <Reveal className="pricing__addons">
+          <div className="pricing__addons">
             <div className="pricing__addons-head">
               <span className="k">
                 <Icon name="puzzle" size={17} color="var(--brand-primary)" />
@@ -73,15 +73,15 @@ export default function PricingPage() {
                 </span>
               ))}
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal className="pricing__note">
+          <div className="pricing__note">
             <span className="oneoff">
               <Icon name="file-check-2" size={18} color="var(--brand-primary)" />
               {PRICING_ONCE_OFF_NOTE}
             </span>
             <span className="fine">{PRICING_FINE_PRINT}</span>
-          </Reveal>
+          </div>
 
           <div className="page-cta-row" style={{ justifyContent: "center" }}>
             <BookButton size="lg" iconRight="arrow-right">

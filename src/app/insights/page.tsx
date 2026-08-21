@@ -43,18 +43,16 @@ export default function InsightsPage() {
           <ul className="insights-preview" style={{ marginTop: "2rem" }}>
             {INSIGHT_TOPICS.map((topic, i) => (
               <li key={topic.title} className="insights-preview__item">
-                <Reveal delay={String(i + 1)}>
-                  <div className="insights-preview__row">
-                    <span className="insights-preview__mark" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <span className="insights-preview__title">{topic.title}</span>
-                      <p className="insights-preview__blurb">{topic.blurb}</p>
-                      <p className="insights-preview__status">Planned resource topic — article not published yet</p>
-                    </div>
+                <div className="insights-preview__row">
+                  <span className="insights-preview__mark" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <span className="insights-preview__title">{topic.title}</span>
+                    <p className="insights-preview__blurb">{topic.blurb}</p>
+                    <p className="insights-preview__status">Planned resource topic — article not published yet</p>
                   </div>
-                </Reveal>
+                </div>
               </li>
             ))}
           </ul>
