@@ -15,7 +15,7 @@ const DESCRIPTION =
   "AOL Accounting Academy SA supports SMEs, start-ups, retail, construction, transport, hospitality, professional services, education and non-profits with accounting and advisory services.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: canonicalUrl("/industries/") },
   openGraph: { title: TITLE, description: DESCRIPTION, url: canonicalUrl("/industries/") },
