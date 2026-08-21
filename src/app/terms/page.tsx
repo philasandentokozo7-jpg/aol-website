@@ -15,8 +15,10 @@ import {
   TRADING_NAME,
   WHATSAPP_URL,
 } from "@/config/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonicalUrl("/terms/") },
   title: "Terms of Use",
   description: `Terms of Use for the ${TRADING_NAME} website.`,
 };

@@ -7,6 +7,7 @@ import {
   SERVICES_SECTION_HEADING,
   SERVICES_SECTION_INTRO,
   SERVICES_VIEW_ALL_LABEL,
+  servicePath,
 } from "@/content/services";
 
 export function Services() {
@@ -29,15 +30,14 @@ export function Services() {
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
-                titleOnly={!service.description}
-                href="/services"
-                linkLabel={service.description ? "Learn more" : null}
+                href={servicePath(service.slug)}
+                linkLabel="Learn more"
               />
             </Reveal>
           ))}
         </div>
         <Reveal className="services__more">
-          <Button href="/services" size="lg" iconRight="arrow-right">
+          <Button href="/services/" size="lg" iconRight="arrow-right">
             {SERVICES_VIEW_ALL_LABEL}
           </Button>
         </Reveal>

@@ -1,49 +1,36 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { openConsultation } from "./consultation-events";
 import { BRAND, TRADING_NAME } from "@/config/site";
+import { PRIMARY_NAV } from "@/lib/seo";
 
-export const NAV: Array<[string, string]> = [
-  ["Home", "/#home"],
-  ["About", "/#about"],
-  ["Services", "/services"],
-  ["Industries", "/#industries"],
-  ["Pricing", "/#pricing"],
-  ["Insights", "/#insights"],
-  ["Contact", "/#contact"],
-];
+export const NAV = PRIMARY_NAV;
 
-const NAV_IDS = ["home", "about", "services", "industries", "pricing", "insights", "contact"];
-
-function useScrollSpy(ids: string[]) {
+function useHomeScrollSpy(enabled: boolean) {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState(ids[0]);
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 12);
-      const y = window.scrollY + 140;
-      let cur = ids[0];
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= y) cur = id;
-      }
-      setActive(cur);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ids.join(",")]);
-  return { scrolled, active };
+  }, []);
+  return { scrolled: enabled ? scrolled : true };
+}
+
+function pathMatches(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href);
 }
 
 export function Header() {
+  const pathname = usePathname() || "/";
   const [menuOpen, setMenuOpen] = useState(false);
-  const { scrolled, active } = useScrollSpy(NAV_IDS);
+  const { scrolled } = useHomeScrollSpy(pathname === "/");
   const panelRef = useRef<HTMLDivElement | null>(null);
   const burgerRef = useRef<HTMLButtonElement | null>(null);
   const menuId = useId();
@@ -92,26 +79,25 @@ export function Header() {
     };
   }, [menuOpen, closeMenu]);
 
-  const isActive = (href: string) => {
-    if (href.startsWith("/#")) return active === href.slice(2);
-    if (href === "/services") return active === "services";
-    return false;
-  };
-
   return (
     <>
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
-      <header className={`hdr ${scrolled ? "hdr--scrolled" : ""}`}>
+      <header className={`hdr ${scrolled || pathname !== "/" ? "hdr--scrolled" : ""}`}>
         <div className="container hdr__inner">
-          <Link className="hdr__logo" href="/#home" aria-label={`${TRADING_NAME} — home`}>
+          <Link className="hdr__logo" href="/" aria-label={`${TRADING_NAME} — home`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={BRAND.logoFull} alt={TRADING_NAME} width={60} height={42} fetchPriority="high" />
           </Link>
           <nav className="hdr__nav" aria-label="Primary">
             {NAV.map(([label, href]) => (
-              <Link key={href} className={`navlink ${isActive(href) ? "navlink--active" : ""}`} href={href}>
+              <Link
+                key={href}
+                className={`navlink ${pathMatches(pathname, href) ? "navlink--active" : ""}`}
+                href={href}
+                aria-current={pathMatches(pathname, href) ? "page" : undefined}
+              >
                 {label}
               </Link>
             ))}
@@ -119,6 +105,9 @@ export function Header() {
           <div className="hdr__actions">
             <Button className="hdr__cta" size="sm" iconRight="arrow-right" onClick={onBook}>
               Book a Free Consultation
+            </Button>
+            <Button className="hdr__cta-mobile" size="sm" onClick={onBook}>
+              Book
             </Button>
             <button
               ref={burgerRef}

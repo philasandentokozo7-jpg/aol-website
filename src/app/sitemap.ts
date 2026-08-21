@@ -1,17 +1,18 @@
 import type { MetadataRoute } from "next";
 import { INDEXING_ENABLED, OFFICIAL_SITE_URL, SITE_URL } from "@/config/site";
+import { SITEMAP_ROUTES } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = INDEXING_ENABLED ? OFFICIAL_SITE_URL : SITE_URL;
-  const routes = ["", "/services", "/privacy", "/cookies", "/terms", "/thank-you"];
+  // Staging builds still emit a sitemap file for QA; robots disallow all when indexing is off.
+  // Production indexing uses the official domain origin.
+  const origin = (INDEXING_ENABLED ? OFFICIAL_SITE_URL : SITE_URL).replace(/\/$/, "");
 
-  // Staging builds still emit a file for local QA, but robots disallow all indexing.
-  return routes.map((path) => ({
-    url: `${base}${path || "/"}`,
-    lastModified: new Date(),
-    changeFrequency: path === "" ? "monthly" : "yearly",
-    priority: path === "" ? 1 : 0.6,
+  return SITEMAP_ROUTES.map((route) => ({
+    url: route.path === "/" ? `${origin}/` : `${origin}${route.path}`,
+    lastModified: new Date("2026-08-21"),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

@@ -1,19 +1,8 @@
 import { IndustryTag } from "../ui/IndustryTag";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../interactive/Reveal";
-import type { IconName } from "../ui/Icon";
-
-const INDUSTRIES: Array<[IconName, string]> = [
-  ["building-2", "Small & Medium Enterprises (SMEs)"],
-  ["rocket", "Start-ups"],
-  ["store", "Retail & Wholesale"],
-  ["hard-hat", "Construction"],
-  ["bus", "Transport & Taxi Industry"],
-  ["utensils", "Hospitality"],
-  ["briefcase", "Professional Services"],
-  ["school", "Educational Institutions"],
-  ["heart-handshake", "Non-Profit Organisations"],
-];
+import { Button } from "../ui/Button";
+import { INDUSTRIES, INDUSTRIES_HEADING, INDUSTRIES_INTRO } from "@/content/industries";
 
 export function Industries() {
   return (
@@ -25,19 +14,24 @@ export function Industries() {
             align="center"
             tone="onDark"
             eyebrow="Industries We Serve"
-            title="Supporting Businesses Across Diverse Industries"
-            lead="We proudly provide professional accounting and advisory services to organisations operating in a wide range of industries."
+            title={INDUSTRIES_HEADING}
+            lead={INDUSTRIES_INTRO}
           />
         </Reveal>
         <ul className="grid grid--industries">
-          {INDUSTRIES.map(([icon, label], i) => (
-            <li key={label} className="industry-item">
+          {INDUSTRIES.map((item, i) => (
+            <li key={item.label} className="industry-item">
               <Reveal delay={String((i % 3) + 1)}>
-                <IndustryTag icon={icon}>{label}</IndustryTag>
+                <IndustryTag icon={item.icon}>{item.label}</IndustryTag>
               </Reveal>
             </li>
           ))}
         </ul>
+        <Reveal className="services__more">
+          <Button href="/industries/" size="lg" variant="outline" onDark iconRight="arrow-right">
+            View industries
+          </Button>
+        </Reveal>
       </div>
     </section>
   );

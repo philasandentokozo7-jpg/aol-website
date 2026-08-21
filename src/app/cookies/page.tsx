@@ -9,8 +9,10 @@ import {
   REGISTERED_COMPANY_NAME,
   TRADING_NAME,
 } from "@/config/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonicalUrl("/cookies/") },
   title: "Cookie Policy",
   description: `Cookie Policy for ${TRADING_NAME}.`,
 };

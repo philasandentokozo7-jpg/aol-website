@@ -1,82 +1,14 @@
-import { Icon, type IconName } from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 import { PricingCard } from "../ui/PricingCard";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../interactive/Reveal";
-
-interface Plan {
-  tier: string;
-  price: string;
-  icon: IconName;
-  description: string;
-  features: string[];
-  featured?: boolean;
-  badge?: string;
-}
-
-const PLANS: Plan[] = [
-  {
-    tier: "Foundation",
-    price: "R2,300",
-    icon: "layers",
-    description:
-      "A strong financial foundation — for start-ups, sole proprietors and small businesses with lower transaction volumes.",
-    features: [
-      "Daily / weekly / monthly bookkeeping",
-      "Bank reconciliation (1 account)",
-      "Accounts payable & receivable",
-      "General ledger & trial balance",
-      "Cloud bookkeeping on Xero",
-      "Monthly financial summary",
-      "Email & WhatsApp support",
-    ],
-  },
-  {
-    tier: "Growth",
-    price: "R4,500",
-    icon: "trending-up",
-    featured: true,
-    badge: "Most Popular",
-    description: "Deeper insight and stronger control for expanding SMEs (≈100–500 monthly transactions).",
-    features: [
-      "Everything in Foundation",
-      "Multiple bank reconciliations",
-      "Inventory & fixed-asset register",
-      "AR / AP ageing reports",
-      "Monthly management reports",
-      "Month-end review meeting",
-      "Priority client support",
-    ],
-  },
-  {
-    tier: "Professional",
-    price: "R7,500",
-    icon: "briefcase",
-    description: "Comprehensive management for established businesses (≈500–1,500 monthly transactions).",
-    features: [
-      "Everything in Growth",
-      "Monthly financial analysis",
-      "Budget monitoring & cash-flow reporting",
-      "Management accounting & KPI reporting",
-      "Quarterly review meetings",
-      "Dedicated account manager",
-      "Business performance recommendations",
-    ],
-  },
-];
-
-const ADDONS = [
-  "Payroll Administration",
-  "VAT Registration & Returns",
-  "Income Tax Services",
-  "Annual Financial Statements",
-  "Independent Reviews",
-  "CIPC Services",
-  "Xero Setup & Migration",
-  "Xero Training",
-  "Business Advisory",
-  "Cash-Flow Forecasting",
-  "Accounting Training",
-];
+import { Button } from "../ui/Button";
+import {
+  PRICING_ADDONS,
+  PRICING_FINE_PRINT,
+  PRICING_ONCE_OFF_NOTE,
+  PRICING_PLANS,
+} from "@/content/pricing";
 
 export function Pricing() {
   return (
@@ -91,10 +23,10 @@ export function Pricing() {
           />
         </Reveal>
         <div className="pricing__grid">
-          {PLANS.map((p, i) => (
+          {PRICING_PLANS.map((p, i) => (
             <Reveal key={p.tier} delay={String(i + 1)} style={{ display: "flex", minWidth: 0 }}>
               <div style={{ flex: 1, display: "flex", minWidth: 0 }}>
-                <PricingCard {...p} period="per month" cta={`Choose ${p.tier}`} ctaHref="/#contact" />
+                <PricingCard {...p} period="per month" cta={`Choose ${p.tier}`} ctaHref="/contact/" />
               </div>
             </Reveal>
           ))}
@@ -109,7 +41,7 @@ export function Pricing() {
             <span className="sub">Add to any package based on your business requirements</span>
           </div>
           <div className="pricing__chips">
-            {ADDONS.map((a) => (
+            {PRICING_ADDONS.map((a) => (
               <span className="chip" key={a}>
                 {a}
               </span>
@@ -120,9 +52,15 @@ export function Pricing() {
         <Reveal className="pricing__note">
           <span className="oneoff">
             <Icon name="file-check-2" size={18} color="var(--brand-primary)" />
-            Once-off professional services from R450
+            {PRICING_ONCE_OFF_NOTE}
           </span>
-          <span className="fine">Final pricing depends on your business requirements and transaction volume.</span>
+          <span className="fine">{PRICING_FINE_PRINT}</span>
+        </Reveal>
+
+        <Reveal className="services__more">
+          <Button href="/pricing/" size="lg" variant="outline" iconRight="arrow-right">
+            Full pricing details
+          </Button>
         </Reveal>
       </div>
     </section>

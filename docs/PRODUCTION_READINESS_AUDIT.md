@@ -15,14 +15,14 @@
 | Form provider | Netlify Forms (`aol-website-enquiries`); WhatsApp/phone remain alternative contact options |
 | Analytics | Not configured |
 | Official domain (intended) | `https://aolaccountants.co.za` |
-| Wrong/parking domain (do not use) | `aolaccounting.co.za` / `www.aolaccounting.co.za` |
+| Wrong/typo domain (do not use) | `aolaccounting.co.za` — documentation warning only |
 
 ## Current deploy reality
 
-* Code on `main` includes owner copy, Netlify Forms, and approved emails.
-* GitHub Pages Actions deploy from `main` **succeeded**.
-* Public custom domain still points at a **parking page**; GitHub Pages custom domain setting still uses `www.aolaccounting.co.za`.
-* Netlify preview URL may still serve a **stale** older build — do not treat it as current until redeployed from `main`.
+* Netlify hosts production on `main` with `aolaccountants.co.za` + HTTPS.
+* Forms detect `aol-website-enquiries`; notifications go to `office@aolaccountants.co.za`.
+* Application defaults remain staging/noindex until launch env flags are flipped.
+* SEO architecture branch adds standalone commercial pages and sitemap coverage — merge after QA.
 * See `docs/POST_DEPLOY_STATUS.md`.
 
 ## Routes
@@ -83,11 +83,10 @@
 * Dependency audit: upgraded `next` / `eslint-config-next` to 16.2.12. Residual high findings remain in transitive `postcss` / `sharp` via Next; `npm audit fix --force` proposes unsafe downgrades — do not apply blindly. Re-audit at launch.
 * Static export is served with `npx serve out` (or Netlify/GitHub Pages). `next start` is not the static-hosting path.
 
-## Remaining blockers to official production launch
+## Remaining blockers to official production indexing
 
-1. Remove wrong Pages custom domain + fix web DNS for `aolaccountants.co.za` (currently parking)
-2. Choose primary host (Netlify recommended while keeping Netlify Forms) and redeploy current `main`
-3. Netlify Forms notifications to `office@aolaccountants.co.za` + E2E form test
-4. SPF / DKIM / DMARC
-5. Legal approval + claim evidence confirmation
-6. Flip env flags and rebuild for indexing only after QA
+1. Merge SEO architecture branch after QA
+2. Confirm live form E2E if not already done
+3. SPF / DKIM / DMARC if incomplete
+4. Legal approval + claim evidence confirmation
+5. Flip env flags and rebuild for indexing only after QA
