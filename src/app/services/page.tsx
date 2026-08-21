@@ -49,17 +49,15 @@ export default function ServicesPage() {
       <section className="section section--paper2">
         <div className="container">
           <div className="grid grid--services grid--services-detail">
-            {SERVICES.map((service, i) => (
+            {SERVICES.map((service) => (
               <div key={service.slug} id={service.slug}>
-                <Reveal delay={String((i % 3) + 1)}>
-                  <ServiceCard
-                    icon={service.icon}
-                    title={service.title}
-                    description={service.description}
-                    href={servicePath(service.slug)}
-                    linkLabel="Learn more"
-                  />
-                </Reveal>
+                <ServiceCard
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  href={servicePath(service.slug)}
+                  linkLabel="Learn more"
+                />
               </div>
             ))}
           </div>

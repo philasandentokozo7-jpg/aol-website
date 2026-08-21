@@ -47,11 +47,9 @@ export default function IndustriesPage() {
             without one-size-fits-all claims or invented sector statistics.
           </p>
           <ul className="grid grid--industries" style={{ marginTop: "2rem" }}>
-            {INDUSTRIES.map((item, i) => (
+            {INDUSTRIES.map((item) => (
               <li key={item.label} className="industry-item">
-                <Reveal delay={String((i % 3) + 1)}>
-                  <IndustryTag icon={item.icon}>{item.label}</IndustryTag>
-                </Reveal>
+                <IndustryTag icon={item.icon}>{item.label}</IndustryTag>
               </li>
             ))}
           </ul>
