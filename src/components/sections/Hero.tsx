@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section id="home" className="hero" aria-labelledby="hero-heading">
       <div className="container hero__grid">
-        <Reveal className="hero__copy" immediate>
+        <Reveal className="hero__intro" immediate>
           <p className="hero__brand">{BRAND.name}</p>
           <h1 id="hero-heading" className="hero__title">
             Accountants in Durban for Tax, Bookkeeping &amp; Business Advisory
@@ -23,6 +23,16 @@ export function Hero() {
               Explore Our Services
             </Button>
           </div>
+        </Reveal>
+
+        <Reveal className="hero__visual" delay="1" immediate>
+          <div className="hero__frame">
+            <HeroVideo />
+            <span className="hero__ring" aria-hidden="true"></span>
+          </div>
+        </Reveal>
+
+        <Reveal className="hero__body" delay="2">
           <div className="hero__leads">
             <p>
               AOL Accounting Academy SA is a modern accounting and business advisory firm that collaborates with a
@@ -58,13 +68,6 @@ export function Hero() {
               </TrustBadge>
             </li>
           </ul>
-        </Reveal>
-
-        <Reveal className="hero__visual" delay="1" immediate>
-          <div className="hero__frame">
-            <HeroVideo />
-            <span className="hero__ring" aria-hidden="true"></span>
-          </div>
         </Reveal>
       </div>
     </section>
