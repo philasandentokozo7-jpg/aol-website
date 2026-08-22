@@ -3,7 +3,7 @@ import { Header } from "@/components/interactive/Header";
 import { ConsultationModal } from "@/components/interactive/ConsultationModal";
 import { MobileActionBar } from "@/components/interactive/MobileActionBar";
 import { NetlifyFormsDetector } from "@/components/interactive/NetlifyFormsDetector";
-import { RevealRuntime } from "@/components/interactive/RevealRuntime";
+import { RevealRuntime, REVEAL_SCRIPT } from "@/components/interactive/RevealRuntime";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { WhyChoose } from "@/components/sections/WhyChoose";
@@ -57,6 +57,7 @@ export default function Home() {
       <ConsultationModal />
       <AnchorFocus />
       <RevealRuntime />
+      <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
     </div>
   );
 }
