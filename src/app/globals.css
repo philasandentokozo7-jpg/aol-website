@@ -937,14 +937,33 @@ a.aol-industrytag,.aol-industrytag--link{cursor:pointer}
   background: rgba(10,30,58,.66); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.18);
   padding: .3em .6em; border-radius: 999px; }
 
-/* ---- Reveal on scroll ---- */
-.reveal { opacity: 0; transform: translateY(var(--reveal-shift)); }
-.reveal.in { animation: aol-fade-in-up var(--dur-slower) var(--ease-out) forwards; }
-.reveal[data-delay="1"].in { animation-delay: .08s; }
-.reveal[data-delay="2"].in { animation-delay: .16s; }
-.reveal[data-delay="3"].in { animation-delay: .24s; }
-.reveal[data-delay="4"].in { animation-delay: .32s; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .reveal.in { animation: none; } }
+/* ---- Reveal on scroll ----
+   Progressive enhancement: content is visible by default.
+   JS adds html.reveal-ready, then hides pending items until they enter view.
+   This prevents blank sections if a script is late or a client navigation
+   misses the observer (the /services/ blank-page class of bug). */
+.reveal { opacity: 1; transform: none; }
+html.reveal-ready .reveal:not(.in) {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  /* Last resort: never stay blank if the observer misses an element */
+  animation: aol-reveal-failsafe 0.01s linear 1.5s forwards;
+}
+html.reveal-ready .reveal.in {
+  animation: aol-fade-in-up var(--dur-slower) var(--ease-out) forwards;
+}
+html.reveal-ready .reveal[data-delay="1"].in { animation-delay: .08s; }
+html.reveal-ready .reveal[data-delay="2"].in { animation-delay: .16s; }
+html.reveal-ready .reveal[data-delay="3"].in { animation-delay: .24s; }
+html.reveal-ready .reveal[data-delay="4"].in { animation-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  html.reveal-ready .reveal:not(.in),
+  html.reveal-ready .reveal.in {
+    opacity: 1; transform: none; animation: none;
+  }
+}
+@keyframes aol-reveal-failsafe { to { opacity: 1; transform: none; } }
 
 /* ---- Modal ---- */
 .modal {

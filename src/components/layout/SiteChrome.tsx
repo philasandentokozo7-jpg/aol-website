@@ -5,7 +5,7 @@ import { ConsultationModal } from "@/components/interactive/ConsultationModal";
 import { MobileActionBar } from "@/components/interactive/MobileActionBar";
 import { NetlifyFormsDetector } from "@/components/interactive/NetlifyFormsDetector";
 import { AnchorFocus } from "@/components/interactive/AnchorFocus";
-import { RevealRuntime } from "@/components/interactive/RevealRuntime";
+import { RevealRuntime, REVEAL_SCRIPT } from "@/components/interactive/RevealRuntime";
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   return (
@@ -18,6 +18,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <ConsultationModal />
       <AnchorFocus />
       <RevealRuntime />
+      <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
     </div>
   );
 }
