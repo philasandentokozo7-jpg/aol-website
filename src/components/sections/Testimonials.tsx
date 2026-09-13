@@ -1,8 +1,11 @@
+import { GoogleReviews } from "../interactive/GoogleReviews";
+
 /**
- * Reusable testimonials slot.
- * Owner source included an example quotation only — not a verified client review.
- * Renders nothing publicly until genuine testimonials and publication permission exist.
+ * Client voices slot.
+ * Shows live, genuine Google reviews via /api/google-rating — never example or
+ * placeholder quotations. GoogleReviews renders nothing until real reviews and
+ * a rating exist on the Google Business Profile.
  */
 export function Testimonials() {
-  return null;
+  return <GoogleReviews />;
 }
