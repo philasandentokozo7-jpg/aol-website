@@ -22,10 +22,15 @@ Last sorted: 2026-08-21 (production indexing enabled)
 
 Standalone About, Contact, Industries, Pricing, Insights and ten service landing pages; phone-first mobile polish; commercial homepage H1; sitemap excludes `/thank-you/`; Netlify Forms identity `aol-website-enquiries`.
 
+## Google indexing
+
+Technical crawlability is **live now** (`Allow: /`, `index,follow`, official sitemap).  
+Owner must finish Search Console verification + sitemap submit — see `docs/GOOGLE_SEARCH_NOW.md`.
+
 ## Still recommended
 
-1. End-to-end real form submission confirmation on production Netlify (if not already completed)
-2. Search Console verification + sitemap submission on the official domain only
+1. Search Console verification + sitemap submission + URL inspection requests (`docs/GOOGLE_SEARCH_NOW.md`)
+2. End-to-end real form submission confirmation on production Netlify (if not already completed)
 3. SPF / DKIM / DMARC if still incomplete
 4. Spot-check live visual QA on phone widths after this deploy
 
