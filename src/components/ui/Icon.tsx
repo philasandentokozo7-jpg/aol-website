@@ -5,7 +5,7 @@ import {
   Facebook, FileCheck2, FileText, GraduationCap, HardHat, HeartHandshake, Instagram,
   Landmark, Layers, Lightbulb, Linkedin, Mail, MapPin, Menu, MessageCircle,
   MessagesSquare, Phone, Puzzle, Receipt, Rocket, School, Settings, ShieldCheck,
-  SlidersHorizontal, Store, Target, TrendingUp, Twitter, User, Users, Utensils, X,
+  SlidersHorizontal, Star, Store, Target, TrendingUp, Twitter, User, Users, Utensils, X,
 } from "lucide-react";
 
 // Kebab-case Lucide names (as used throughout the design handoff) → components.
@@ -50,6 +50,7 @@ const ICONS = {
   settings: Settings,
   "shield-check": ShieldCheck,
   "sliders-horizontal": SlidersHorizontal,
+  star: Star,
   store: Store,
   target: Target,
   "trending-up": TrendingUp,
