@@ -102,7 +102,9 @@ export const metadata: Metadata = {
   },
   description:
     "AOL Accounting Academy SA — modern accounting, taxation, payroll, compliance and business advisory for South African SMEs, start-ups and growing companies.",
-  icons: { icon: BRAND.logoMarkPng },
+  // Icons come from the file conventions in src/app/ (favicon.ico, icon.png, apple-icon.png):
+  // square 1:1 images as required by Google Search. Do not point `icons` at the
+  // non-square aol-mark.png — a non-square favicon makes Google fall back to a generic globe.
   robots: INDEXING_ENABLED
     ? { index: true, follow: true }
     : { index: false, follow: false, googleBot: { index: false, follow: false } },
